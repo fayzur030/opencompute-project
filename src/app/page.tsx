@@ -1,9 +1,3 @@
-import { Navbar } from './components/shared/Navbar'
-
 export default function Home() {
-  return (
-    <div>
-      <h1></h1>
-    </div>
-  )
+  return <div>{/* <h1 className="bg-amber-700">Welcome</h1> */}</div>
 }
