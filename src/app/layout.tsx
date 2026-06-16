@@ -8,7 +8,7 @@ const neueMontreal = localFont({
   src: [
     {
       path: '../../public/fonts/NeueMontreal-Bold.otf',
-      weight: '700',
+      weight: '300',
       style: 'normal',
     },
     {

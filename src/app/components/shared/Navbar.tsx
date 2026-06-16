@@ -47,7 +47,7 @@ export default function Navbar() {
             : 'bg-zinc-950 border-b border-zinc-800'
         }`}
       >
-        <div className='px-6 h-20 flex items-center justify-between'>
+        <div className='max-w-7xl mx-auto px-6 h-20 flex items-center justify-between'>
           {/* Logo */}
           <Link href='/' className='flex items-center gap-3 group'>
             <div className='p-2 rounded-lg border border-zinc-800 bg-black text-emerald-400 group-hover:border-emerald-500/50 transition-all duration-300'>
