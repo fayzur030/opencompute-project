@@ -1,17 +1,54 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/shared/Navbar'
 import { ThemeProvider } from './components/providers/theme-provider'
+import localFont from 'next/font/local'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const neueMontreal = localFont({
+  src: [
+    {
+      path: '../../public/fonts/NeueMontreal-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-BoldItalic.otf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Italic.otf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Light.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-LightItalic.otf',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-MediumItalic.otf',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-neue-montreal',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -25,12 +62,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang='en'
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
-      <body className='min-h-full flex flex-col bg-background text-foreground transition-colors duration-300'>
+    <html lang='en' suppressHydrationWarning>
+      <body
+        className={`${neueMontreal.className} min-h-full flex flex-col bg-background text-foreground`}
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='dark'
