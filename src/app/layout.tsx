@@ -64,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${neueMontreal.className} min-h-full flex flex-col bg-background text-foreground`}
+        className={`${neueMontreal.className} bg-black min-h-full flex flex-col bg-background text-foreground`}
       >
         <ThemeProvider
           attribute='class'

@@ -34,3 +34,19 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
 } */
+
+/* .hero {
+  background-image: url('../assets/Hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  width: 100%;
+  min-height: 100vh;
+} */
+.hero {
+  background-image: url('../assets/Hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
