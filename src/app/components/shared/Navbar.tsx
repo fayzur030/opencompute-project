@@ -50,15 +50,15 @@ export default function Navbar() {
         <div className='max-w-7xl mx-auto px-6 h-20 flex items-center justify-between'>
           {/* Logo */}
           <Link href='/' className='flex items-center gap-3 group'>
-            <div className='p-2 rounded-lg border border-zinc-800 bg-black text-emerald-400 group-hover:border-emerald-500/50 transition-all duration-300'>
+            {/* <div className='p-2 rounded-lg border border-zinc-800 bg-black text-emerald-400 group-hover:border-emerald-500/50 transition-all duration-300'>
               <Terminal
                 size={20}
                 className='group-hover:rotate-6 transition-transform duration-300'
               />
-            </div>
+            </div> */}
 
             <h1 className='text-xl font-italic tracking-tight text-white'>
-              Open<span className='text-emerald-400'>Compute</span>
+              Open<span>Compute</span>
             </h1>
           </Link>
 

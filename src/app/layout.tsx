@@ -66,14 +66,17 @@ export default function RootLayout({
       <body
         className={`${neueMontreal.className} bg-black min-h-full flex flex-col bg-background text-foreground`}
       >
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute='class'
           defaultTheme='dark'
           disableTransitionOnChange
         >
           <Navbar />
           <main className='pt-20 flex-1'>{children}</main>
-        </ThemeProvider>
+        </ThemeProvider> */}
+
+        <Navbar />
+        <main className='pt-20 flex-1'>{children}</main>
       </body>
     </html>
   )

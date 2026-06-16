@@ -56,12 +56,12 @@ const Hero = () => {
             <br className='block md:hidden lg:hidden' /> at Scale
           </h1>
 
-          <p className='text-[#E5E5E5] text-xs lg:text-sm md:text-sm font-normal '>
+          <p className='text-gray-400 text-sm lg:text-base md:text-base font-normal '>
             Harness the power of scalable coprocessors across{' '}
             <br className='block md:hidden lg:hidden' /> a decentralized
             network. OpenCompute
             <br className='hidden md:hidden lg:block' /> Protocol lets you
-            <br className='block md:hidden lg:hidden' /> access, process, and
+             access, process, and
             verify data securely and efficiently.
           </p>
         </div>
