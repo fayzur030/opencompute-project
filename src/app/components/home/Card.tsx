@@ -1,81 +1,207 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { ArrowRight, Cpu, Zap, TrendingUp } from 'lucide-react'
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: (i = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay: i * 0.08,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-}
+import { Lock } from 'lucide-react'
 
 const stats = [
-  { value: '500M', unit: 'nodes', label: 'Scale' },
-  { value: '10', unit: 'ms startup', label: 'Execution speed' },
-  { value: '100', unit: 'MB', label: 'Memory per instance' },
-  { value: '5', unit: 'min per server', label: 'Task duration' },
+  { value: '500M nodes', label: 'Scale' },
+  { value: '10 ms startup', label: 'Execution speed' },
+  { value: '100 MB', label: 'Memory per instance' },
+  { value: '5 min per server', label: 'Task duration' },
 ]
 
-const features = [
-  {
-    n: '// 01',
-    title: 'Accelerate execution',
-    body: "Verifiable offchain execution doesn't require redundant replication of computations and can thus produce results much faster.",
-    Icon: Zap,
-  },
-  {
-    n: '// 02',
-    title: 'Reduce cost',
-    body: 'Onchain verification of proofs is usually orders of magnitude cheaper than carrying out the entire computation completely onchain.',
-    Icon: Cpu,
-  },
-  {
-    n: '// 03',
-    title: 'Earn as They Grow',
-    body: 'Data and logic of computations carried out offchain are not visible onchain or to the host machine in the case of enclaves and cryptographic schemes.',
-    Icon: TrendingUp,
-  },
-]
-
-function GpuVisual() {
+export default function Cards() {
   return (
-    <div className='relative h-48 w-full overflow-hidden rounded-md border border-emerald-500/20 bg-black/60'>
+    <div className='mt-10 min-h-screen bg-black text-white antialiased selection:bg-green-500/30 '>
+      {/* Stats Grid - Fixed Borders to match exactly like Figma */}
+      <div className='border-[#2F3038] border-t border-b'>
+        <section className='max-w-7xl mx-auto border-t grid grid-cols-2 border-b border-white/10 md:grid-cols-4'>
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className={`p-6 md:p-10 flex flex-col justify-center
+              ${i % 2 !== 0 ? 'border-l border-[#2F3038]' : ''} 
+              ${i >= 2 ? 'border-t border-[#2F3038] md:border-t-0' : ''}
+              ${i > 0 ? 'md:border-l md:border-t-0 border-[#2F3038]' : ''}
+            `}
+            >
+              <div className='text-xl font-normal tracking-tight text-white lg:text-4xl md:text-3xl '>
+                {s.value}
+              </div>
+              <div className='mt-1 text-xs lg:text-base md:text-base text-white/40 '>
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
+
+      {/* Hero Section - Clean padding and responsive text matching the design */}
+      <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full border-l-2 border-[#2F3038]'>
+        <h1 className='text-4xl font-normal leading-[1.1] tracking-tight text-white  md:text-4xl lg:text-5xl'>
+          GPU-Powered
+          <br />
+          On-Chain Execution
+        </h1>
+
+        <p className='mt-6 max-w-xl text-sm leading-relaxed text-white/50 md:text-base'>
+          Open computer allows computations to be delegated to TEE-based
+          off-chain micro services with proofs and attestations verified
+          on-chain.
+        </p>
+      </section>
+
+      {/* Feature Cards Grid - Divider approach for perfect borders */}
+      <section className='grid grid-cols-1 border-t   md:grid-cols-3 max-w-7xl mx-auto w-full border-l-2 border-[#2F3038]'>
+        <FeatureCard
+          number='// 01'
+          title='Accelerate execution'
+          description="Verifiable off-chain execution doesn't require redundant replication of computations and can thus produce results much faster."
+          visual={<GpuCpuVisual />}
+          className=''
+        />
+
+        <FeatureCard
+          number='// 02'
+          title='Reduce cost'
+          description='On-chain verification of proofs is usually orders of magnitude cheaper than carrying out the entire computation completely on-chain.'
+          visual={<BarsVisual />}
+          className='border-t border-[#2F3038] md:border-t-0 md:border-l'
+        />
+
+        <FeatureCard
+          number='// 03'
+          title='Earn as They Grow'
+          description='Data and logic of computations carried out off-chain are not visible on-chain or to the host machine in the case of enclaves and cryptographic schemes.'
+          visual={<LockVisual />}
+          className='border-t border-[#2F3038] border-r md:border-t-0 md:border-l'
+        />
+      </section>
+    </div>
+  )
+}
+
+function FeatureCard({
+  number,
+  title,
+  description,
+  visual,
+  className = '',
+}: {
+  number: string
+  title: string
+  description: string
+  visual: React.ReactNode
+  className?: string
+}) {
+  return (
+    <div className={`flex flex-col p-6 md:p-10 ${className}`}>
+      <div className='mb-6 font-mono text-[11px] tracking-wider text-white/30'>
+        {number}
+      </div>
+
+      <h3 className='text-lg font-semibold tracking-tight text-white md:text-xl'>
+        {title}
+      </h3>
+
+      <p className='mt-3 text-xs md:text-sm leading-relaxed text-white/40'>
+        {description}
+      </p>
+
+      <div className='mt-12 flex flex-1 items-end justify-center w-full'>
+        {visual}
+      </div>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------------
+// Visual Components (Figma UI Illustrations updated for seamless match)
+// ---------------------------------------------------------------------------------
+
+function GpuCpuVisual() {
+  return (
+    <div
+      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5'
+      style={{
+        background:
+          'radial-gradient(ellipse at center bottom, rgba(34,197,94,0.15), transparent 80%), #050505',
+      }}
+    >
       <div
-        className='absolute inset-0 opacity-40'
+        className='absolute inset-0 opacity-20'
         style={{
           backgroundImage:
-            'linear-gradient(rgba(16,185,129,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.18) 1px, transparent 1px)',
-          backgroundSize: '14px 14px',
+            'radial-gradient(rgba(34,197,94,0.3) 1px, transparent 1px)',
+          backgroundSize: '8px 8px',
         }}
       />
 
-      <div className='absolute inset-x-6 bottom-6 flex items-end gap-2'>
-        {Array.from({ length: 14 }).map((_, i) => (
-          <motion.div
+      <div className='relative flex h-full items-end justify-center gap-12 pb-6'>
+        {/* GPU */}
+        <div className='flex flex-col items-center gap-2'>
+          <div className='relative flex flex-col items-center'>
+            {/* Glowing bar behind */}
+            <div
+              className='h-24 w-12 rounded-sm bg-gradient-to-t from-green-600 to-green-400 opacity-80'
+              style={{ boxShadow: '0 0 40px rgba(34,197,94,0.6)' }}
+            />
+            {/* Inner line detail */}
+            <div className='absolute top-4 h-[2px] w-8 bg-white/80 rounded-full' />
+          </div>
+
+          <div className='grid h-8 w-12 grid-cols-4 gap-[2px] bg-green-950/50 p-[2px] rounded-sm border border-green-500/20'>
+            {Array.from({ length: 16 }).map((_, i) => (
+              <div key={i} className='bg-green-500/70 rounded-[1px]' />
+            ))}
+          </div>
+          <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase mt-1'>
+            GPU
+          </span>
+        </div>
+
+        {/* CPU */}
+        <div className='flex flex-col items-center gap-2 pb-[2px]'>
+          <div className='grid h-10 w-10 grid-cols-3 gap-[3px] bg-green-950/30 p-[3px] rounded-sm border border-green-800/30'>
+            {Array.from({ length: 9 }).map((_, i) => (
+              <div key={i} className='bg-green-800/60 rounded-[1px]' />
+            ))}
+          </div>
+          <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase mt-1'>
+            CPU
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function BarsVisual() {
+  const heights = [90, 75, 60, 48, 36, 26, 18]
+
+  return (
+    <div
+      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5'
+      style={{
+        background:
+          'radial-gradient(circle at bottom, rgba(34,197,94,0.1), transparent 75%), #050505',
+      }}
+    >
+      <div className='absolute inset-0 flex items-end justify-center gap-2 px-6 pb-6'>
+        {heights.map((h, i) => (
+          <div
             key={i}
-            initial={{ height: 4 }}
-            whileInView={{ height: `${20 + ((i * 37) % 70)}%` }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.9,
-              delay: i * 0.05,
-              ease: 'easeOut',
+            className='w-6 rounded-t-[2px]'
+            style={{
+              height: `${h}%`,
+              background:
+                i < 3
+                  ? 'repeating-linear-gradient(180deg,#22c55e 0 3px,transparent 3px 5px)'
+                  : 'repeating-linear-gradient(180deg,rgba(34,197,94,0.2) 0 3px,transparent 3px 5px)',
+              boxShadow: i < 3 ? '0 0 20px rgba(34,197,94,0.4)' : 'none',
+              opacity: i >= 3 ? 0.4 : 1,
             }}
-            className='flex-1 rounded-sm bg-gradient-to-t from-emerald-500/80 to-emerald-300/30'
           />
         ))}
-      </div>
-
-      <div className='absolute left-4 top-4 font-mono text-[10px] uppercase tracking-widest text-emerald-300/70'>
-        GPU · CPU
       </div>
     </div>
   )
@@ -83,240 +209,43 @@ function GpuVisual() {
 
 function LockVisual() {
   return (
-    <div className='relative h-48 w-full overflow-hidden rounded-md border border-emerald-500/20 bg-black/60'>
-      <div className='absolute inset-0 flex items-center justify-center'>
-        {[0, 1, 2].map((r) => (
-          <motion.span
-            key={r}
-            className='absolute rounded-full border border-emerald-400/40'
-            style={{
-              width: 60 + r * 40,
-              height: 60 + r * 40,
-            }}
-            animate={{
-              scale: [1, 1.15, 1],
-              opacity: [0.7, 0.2, 0.7],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              delay: r * 0.4,
-            }}
-          />
-        ))}
+    <div
+      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5'
+      style={{
+        background:
+          'radial-gradient(circle at center, rgba(34,197,94,0.2), transparent 70%), #050505',
+      }}
+    >
+      {/* Figma style subtle corners */}
+      {[
+        'top-4 left-4 border-t border-l',
+        'top-4 right-4 border-t border-r',
+        'bottom-4 left-4 border-b border-l',
+        'bottom-4 right-4 border-b border-r',
+      ].map((c) => (
+        <div key={c} className={`absolute h-3 w-3 border-white/30 ${c}`} />
+      ))}
 
-        <div className='relative z-10 flex h-14 w-14 items-center justify-center rounded-md bg-emerald-400/10 text-emerald-300'>
-          <svg
-            width='22'
-            height='22'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            strokeWidth='2'
-          >
-            <rect x='4' y='11' width='16' height='10' rx='2' />
-            <path d='M8 11V7a4 4 0 018 0v4' />
-          </svg>
+      <div className='absolute inset-0 flex items-center justify-center'>
+        <div
+          className='relative flex h-24 w-24 items-center justify-center rounded-full'
+          style={{
+            background:
+              'radial-gradient(circle, rgba(34,197,94,0.4), transparent 75%)',
+            boxShadow: '0 0 40px rgba(34,197,94,0.3)',
+          }}
+        >
+          <div
+            className='absolute inset-1 rounded-full border border-green-500/30'
+            style={{ borderStyle: 'dashed' }}
+          />
+
+          <Lock
+            className='relative z-10 h-7 w-7 text-white opacity-90'
+            strokeWidth={2}
+          />
         </div>
       </div>
-
-      <div className='absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent' />
     </div>
   )
-}
-
-function CostVisual() {
-  return (
-    <div className='relative h-48 w-full overflow-hidden rounded-md border border-emerald-500/20 bg-black/60'>
-      <div
-        className='absolute inset-0 opacity-30'
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(45deg, rgba(16,185,129,0.25) 0 2px, transparent 2px 8px)',
-        }}
-      />
-
-      <svg
-        className='absolute inset-0 h-full w-full'
-        viewBox='0 0 200 100'
-        preserveAspectRatio='none'
-      >
-        <motion.path
-          d='M0,80 C40,70 60,40 100,45 C140,50 160,20 200,10'
-          stroke='rgb(110,231,183)'
-          strokeWidth='1.5'
-          fill='none'
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 1.6,
-            ease: 'easeInOut',
-          }}
-        />
-      </svg>
-    </div>
-  )
-}
-
-const visuals = [GpuVisual, CostVisual, LockVisual]
-
-function Index() {
-  const heroRef = useRef(null)
-  const inView = useInView(heroRef, { once: true })
-
-  return (
-    <div className='min-h-screen bg-black text-neutral-100 antialiased'>
-      <section ref={heroRef} className='w-full pb-20'>
-        <div className='mt-20 w-full bg-black lg:border-t md:border-t md:border-b border-neutral-800 md:border-0'>
-          <div className='mx-auto grid max-w-7xl grid-cols-1 px-6 sm:grid-cols-2 md:grid-cols-4 md:border-neutral-800 md:divide-x md:divide-neutral-800'>
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 60, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.15,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                whileHover={{
-                  y: -8,
-                  transition: { duration: 0.3 },
-                }}
-                className='group relative py-3 md:py-14 md:pr-6 md:pl-8 first:md:pl-0'
-              >
-                {/* Glow Effect */}
-                <div className='absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100'>
-                  <div className='absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent blur-2xl md:hidden' />
-                </div>
-
-                {/* Card */}
-                <div className='relative overflow-hidden rounded-xl border border-neutral-800/80 bg-[#0b0d0c] p-6 text-left transition-all duration-500 group-hover:border-neutral-600 group-hover:bg-[#111312] md:rounded-none md:border-0 md:bg-transparent md:p-0 md:hover:bg-transparent'>
-                  {/* Animated top line */}
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: '100%' }}
-                    transition={{
-                      duration: 1,
-                      delay: i * 0.2,
-                    }}
-                    className='absolute left-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/70 to-transparent md:hidden'
-                  />
-
-                  {/* Number */}
-                  <motion.div
-                    initial={{ opacity: 0, letterSpacing: '10px' }}
-                    whileInView={{ opacity: 1, letterSpacing: '0px' }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.2 + i * 0.1,
-                    }}
-                    className='text-3xl font-normal leading-none tracking-tight text-white sm:text-4xl md:text-[40px]'
-                  >
-                    {s.value}
-
-                    {s.unit && (
-                      <span className='ml-1.5 text-xl font-normal text-white sm:text-2xl md:text-3xl'>
-                        {s.unit}
-                      </span>
-                    )}
-                  </motion.div>
-
-                  {/* Label */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.4 + i * 0.1,
-                    }}
-                    className='mt-3 text-sm font-normal text-neutral-400 transition-colors duration-300 group-hover:text-neutral-200 sm:text-base'
-                  >
-                    {s.label}
-                  </motion.div>
-
-                  {/* Floating Blur */}
-                  <div className='absolute -right-10 -top-10 h-24 w-24 rounded-full bg-white/5 blur-3xl transition-all duration-700 group-hover:scale-150 group-hover:bg-white/10' />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* GPU Section */}
-      <section className='mx-auto max-w-7xl px-6 pb-24'>
-        <div className='rounded-md border border-neutral-800 p-8 md:p-12'>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className='text-4xl font-light leading-tight tracking-tight md:text-5xl'
-          >
-            GPU-Powered
-            <br />
-            On-Chain Execution
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.7,
-              delay: 0.1,
-            }}
-            className='mt-6 max-w-xl text-sm leading-relaxed text-neutral-400'
-          >
-            Open compute allows computations to be delegated to TEE-based
-            off-chain microservices with proofs and attestations verified
-            onchain.
-          </motion.p>
-
-          <div className='mt-12 grid gap-6 border-t border-neutral-800 pt-10 md:grid-cols-3'>
-            {features.map((f, i) => {
-              const Visual = visuals[i]
-
-              return (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{
-                    duration: 0.6,
-                    delay: i * 0.12,
-                  }}
-                  className='flex flex-col gap-5'
-                >
-                  <div className='font-mono text-xs text-emerald-400/80'>
-                    {f.n}
-                  </div>
-
-                  <h3 className='text-xl font-medium'>{f.title}</h3>
-
-                  <p className='text-sm leading-relaxed text-neutral-400'>
-                    {f.body}
-                  </p>
-
-                  <Visual />
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <footer className='mx-auto max-w-7xl px-6 py-10 text-xs text-neutral-600'>
-        © {new Date().getFullYear()} OpenCompute Protocol
-      </footer>
-    </div>
-  )
-}
-
-export default function Card() {
-  return <Index />
 }
