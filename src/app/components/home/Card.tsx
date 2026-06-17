@@ -13,21 +13,18 @@ export default function Cards() {
   return (
     <div className='mt-10 min-h-screen bg-black text-white antialiased selection:bg-green-500/30 '>
       {/* Stats Grid - Fixed Borders to match exactly like Figma */}
-      <div className='border-[#2F3038] border-t border-b'>
-        <section className='max-w-7xl mx-auto border-t grid grid-cols-2 border-b border-white/10 md:grid-cols-4'>
-          {stats.map((s, i) => (
+      <div className='border-[#2F3038] lg:border-t md:border-t md:border-b lg:border-b'>
+        <section className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 divide-y divide-[#2F3038] md:divide-y-0'>
+          {stats.map((s, index) => (
             <div
               key={s.label}
-              className={`p-6 md:p-10 flex flex-col justify-center
-              ${i % 2 !== 0 ? 'border-l border-[#2F3038]' : ''} 
-              ${i >= 2 ? 'border-t border-[#2F3038] md:border-t-0' : ''}
-              ${i > 0 ? 'md:border-l md:border-t-0 border-[#2F3038]' : ''}
-            `}
+              className={`p-6 md:p-10 flex flex-col justify-center mx-4 my-3 md:mx-0 md:my-0 rounded-2xl md:rounded-none border border-[#2F3038] md:border-0 py-8 ${index === 0 || index === 1 || index === 2 ? 'md:border-r md:border-r-[#2F3038]' : ''}`}
             >
-              <div className='text-xl font-normal tracking-tight text-white lg:text-4xl md:text-3xl '>
+              <div className='text-xl font-normal tracking-tight text-white lg:text-4xl md:text-3xl'>
                 {s.value}
               </div>
-              <div className='mt-1 text-xs lg:text-base md:text-base text-white/40 '>
+
+              <div className='mt-1 text-xs lg:text-base md:text-base text-white/40'>
                 {s.label}
               </div>
             </div>
@@ -36,46 +33,48 @@ export default function Cards() {
       </div>
 
       {/* Hero Section - Clean padding and responsive text matching the design */}
-      <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full border-l-2 border-[#2F3038]'>
-        <h1 className='text-4xl font-normal leading-[1.1] tracking-tight text-white  md:text-4xl lg:text-5xl'>
-          GPU-Powered
-          <br />
-          On-Chain Execution
-        </h1>
+      <div className='md:pl-10 lg:pl-16 pl-0'>
+        {' '}
+        <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full lg:border-l md:border-l border-[#2F3038]'>
+          <h1 className='text-4xl font-normal leading-[1.1] tracking-tight text-white  md:text-4xl lg:text-5xl'>
+            GPU-Powered
+            <br />
+            On-Chain Execution
+          </h1>
 
-        <p className='mt-6 max-w-xl text-sm leading-relaxed text-white/50 md:text-base'>
-          Open computer allows computations to be delegated to TEE-based
-          off-chain micro services with proofs and attestations verified
-          on-chain.
-        </p>
-      </section>
+          <p className='mt-6 max-w-xl text-sm leading-relaxed text-[#E5E5E5] md:text-base'>
+            Open computer allows computations to be delegated to TEE-based off{' '}
+            <br /> chain micro services with proofs and attestations verified
+            on-chain.
+          </p>
+        </section>
+      </div>
 
       {/* Feature Cards Grid - Divider approach for perfect borders */}
-      <section className='grid grid-cols-1 border-t   md:grid-cols-3 max-w-7xl mx-auto w-full border-l-2 border-[#2F3038]'>
-        <FeatureCard
-          number='// 01'
-          title='Accelerate execution'
-          description="Verifiable off-chain execution doesn't require redundant replication of computations and can thus produce results much faster."
-          visual={<GpuCpuVisual />}
-          className=''
-        />
 
-        <FeatureCard
-          number='// 02'
-          title='Reduce cost'
-          description='On-chain verification of proofs is usually orders of magnitude cheaper than carrying out the entire computation completely on-chain.'
-          visual={<BarsVisual />}
-          className='border-t border-[#2F3038] md:border-t-0 md:border-l'
-        />
-
-        <FeatureCard
-          number='// 03'
-          title='Earn as They Grow'
-          description='Data and logic of computations carried out off-chain are not visible on-chain or to the host machine in the case of enclaves and cryptographic schemes.'
-          visual={<LockVisual />}
-          className='border-t border-[#2F3038] border-r md:border-t-0 md:border-l'
-        />
-      </section>
+      <div className='md:pl-10 lg:pl-16 pl-0'>
+        {' '}
+        <section className='grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto w-full border-t border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038]'>
+          <FeatureCard
+            number='// 01'
+            title='Accelerate execution'
+            description="Verifiable off-chain execution doesn't require redundant replication of computations and can thus produce results much faster."
+            visual={<GpuCpuVisual />}
+          />
+          <FeatureCard
+            number='// 02'
+            title='Reduce cost'
+            description='On-chain verification of proofs is usually orders of magnitude cheaper than carrying out the entire computation completely on-chain.'
+            visual={<BarsVisual />}
+          />
+          <FeatureCard
+            number='// 03'
+            title='Earn as They Grow'
+            description='Data and logic of computations carried out off-chain are not visible on-chain or to the host machine in the case of enclaves and cryptographic schemes.'
+            visual={<LockVisual />}
+          />
+        </section>
+      </div>
     </div>
   )
 }
@@ -94,12 +93,14 @@ function FeatureCard({
   className?: string
 }) {
   return (
-    <div className={`flex flex-col p-6 md:p-10 ${className}`}>
+    <div
+      className={`flex flex-col p-6 md:p-10 ${className} border-l border-[#2F3038]`}
+    >
       <div className='mb-6 font-mono text-[11px] tracking-wider text-white/30'>
         {number}
       </div>
 
-      <h3 className='text-lg font-semibold tracking-tight text-white md:text-xl'>
+      <h3 className='text-lg font-semibold tracking-tight text-white md:text-xl border-l border-[#2F3038]'>
         {title}
       </h3>
 
