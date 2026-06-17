@@ -1,8 +1,10 @@
 'use client'
-
-import { Lock } from 'lucide-react'
+import bgImage from '../../../assets/Clip path group.png'
+import { Lock, LockKeyholeOpen, LockOpen } from 'lucide-react'
 import { motion } from 'framer-motion'
 import CountUp from './CountUp'
+import lock from '../../../assets/lock.png'
+import Image from 'next/image'
 const stats = [
   { number: 500, suffix: 'M nodes', label: 'Scale' },
   { number: 10, suffix: ' ms', label: 'Execution speed' },
@@ -40,7 +42,7 @@ const cardVariants = {
 export default function Cards() {
   return (
     <div className='mt-10 min-h-screen bg-black text-white antialiased selection:bg-green-500/30 '>
-      {/* Stats Grid - Fixed Borders to match exactly like Figma */}
+      {/* Stats Grid */}
       <div className='border-[#2F3038] lg:border-t md:border-t md:border-b lg:border-b'>
         <motion.section
           variants={containerVariants}
@@ -54,11 +56,6 @@ export default function Cards() {
               key={s.label}
               custom={index}
               variants={cardVariants}
-              transition={{
-                type: 'spring',
-                stiffness: 250,
-                damping: 18,
-              }}
               className={`p-6 md:p-10 flex flex-col justify-center mx-4 my-3 md:mx-0 md:my-0 rounded-2xl md:rounded-none border border-[#2F3038] md:border-0 py-8 hover:shadow-2xl hover:bg-white/[0.03] ${
                 index !== stats.length - 1
                   ? 'md:border-r md:border-r-[#2F3038]'
@@ -89,11 +86,10 @@ export default function Cards() {
         </motion.section>
       </div>
 
-      {/* Hero Section - Clean padding and responsive text matching the design */}
+      {/* Hero Section */}
       <div className='md:pl-10 lg:pl-16 pl-0'>
-        {' '}
         <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full lg:border-l md:border-l border-[#2F3038]'>
-          <h1 className='text-4xl font-normal leading-[1.1] tracking-tight text-white  md:text-4xl lg:text-5xl'>
+          <h1 className='text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-4xl lg:text-5xl'>
             GPU-Powered
             <br />
             On-Chain Execution
@@ -107,16 +103,23 @@ export default function Cards() {
         </section>
       </div>
 
-      {/* Feature Cards Grid - Divider approach for perfect borders */}
-
-      <div className='md:pl-10 lg:pl-16 pl-0'>
-        <section className='grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto w-full border-t border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038] '>
-          <FeatureCard
-            number='// 01'
-            title='Accelerate execution'
-            description="Verifiable off-chain execution doesn't require redundant replication of computations and can thus produce results much faster."
-            visual={<GpuCpuVisual />}
-          />
+      {/* Feature Cards Grid */}
+      <div className='md:pl-10 lg:pl-16 pl-0 lg:h-[543px]'>
+        <section className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl  mx-auto w-full border-t border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038] '>
+          <div
+            className=''
+            style={{
+              background: `radial-gradient(circle at left center, rgba(34,197,94,0.12), transparent 25%), radial-gradient(circle at right center, rgba(34,197,94,0.12), transparent 25%), linear-gradient(180deg, #080808 0%, #030303 50%, #000000 100%`,
+            }}
+          >
+            <FeatureCard
+              className=''
+              number='// 01'
+              title='Accelerate execution'
+              description="Verifiable off-chain execution doesn't require redundant replication of computations and can thus produce results much faster."
+              visual={<GpuCpuVisual />}
+            />
+          </div>
           <FeatureCard
             number='// 02'
             title='Reduce cost'
@@ -126,7 +129,7 @@ export default function Cards() {
           <FeatureCard
             number='// 03'
             title='Earn as They Grow'
-            description='Data and logic of computations carried out off-chain are not visible on-chain or to the host machine in the case of enclaves and cryptographic schemes.'
+            description='Data and logic of computations carried out offchain are not visible onchain or to the host machine in the case of enclaves and cryptographic schemes.'
             visual={<LockVisual />}
           />
         </section>
@@ -150,21 +153,21 @@ function FeatureCard({
 }) {
   return (
     <div
-      className={`flex flex-col p-6 md:p-10 ${className} border-l border-[#2F3038]`}
+      className={`flex flex-col h-full p-6 md:p-10 ${className} border-l border-[#2F3038] shadow-[0_0_30px_rgba(162,255,89,0.3)] `}
     >
-      <div className='mb-6 font-mono text-[11px] tracking-wider text-white/30'>
+      <div className='mb-6  text-[11px] tracking-wider text-white/30'>
         {number}
       </div>
 
-      <h3 className='text-lg font-normal tracking-tight text-white md:text-xl border-l border-[#2F3038]'>
+      <h3 className='text-lg md:text-xl font-normal tracking-tight text-[]#FFFFFF'>
         {title}
       </h3>
 
-      <p className='mt-3 text-xs md:text-xs leading-relaxed text-[#FFFFFF]'>
+      <p className='mt-3 font- text-xs md:text-xs leading-relaxed text-[#FFFFFF]/80'>
         {description}
       </p>
 
-      <div className='mt-12 flex flex-1 items-end justify-center w-full'>
+      <div className='mt-10 flex  flex-1 items-end justify-center w-full'>
         {visual}
       </div>
     </div>
@@ -173,55 +176,82 @@ function FeatureCard({
 
 function GpuCpuVisual() {
   return (
-    <div
-      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5 '
-      style={{
-        background:
-          'radial-gradient(ellipse at center bottom, rgba(34,197,94,0.15), transparent 80%), #050505',
-      }}
-    >
-      <div
-        className='absolute inset-0 opacity-20 '
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(34,197,94,0.3) 1px, transparent 1px)',
-          backgroundSize: '8px 8px',
-        }}
-      />
-
-      <div className='relative flex h-full items-end justify-center gap-12 pb-6 '>
-        {/* GPU */}
-        <div className='flex flex-col items-center gap-2'>
-          <div className='relative flex flex-col items-center'>
-            {/* Glowing bar behind */}
-            <div
-              className='h-24 w-12 rounded-sm bg-gradient-to-t from-green-600 to-green-400 opacity-80'
-              style={{ boxShadow: '0 0 40px rgba(34,197,94,0.6)' }}
-            />
-            {/* Inner line detail */}
-            <div className='absolute top-4 h-[2px] w-8 bg-white/80 rounded-full' />
-          </div>
-
-          <div className='grid h-8 w-12 grid-cols-4 gap-[2px] bg-green-950/50 p-[2px] rounded-sm border border-green-500/20'>
-            {Array.from({ length: 16 }).map((_, i) => (
-              <div key={i} className='bg-green-500/70 rounded-[1px]' />
-            ))}
-          </div>
-          <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase mt-1'>
+    <div className='relative h-52 w-full overflow-hidden rounded-md  '>
+      <div className=' inset-0 flex items-end justify-between gap-3 px-4  z-10 w-full h-full'>
+        <div className='flex flex-col items-center gap-1.5 flex-1 mb-1'>
+          <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase'>
             GPU
           </span>
-        </div>
-
-        {/* CPU */}
-        <div className='flex flex-col items-center gap-2 pb-[2px]'>
-          <div className='grid h-10 w-10 grid-cols-3 gap-[3px] bg-green-950/30 p-[3px] rounded-sm border border-green-800/30'>
-            {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className='bg-green-800/60 rounded-[1px]' />
+          <div className='grid grid-cols-12 gap-[1px] bg-zinc-950/80 border border-white/50 rounded-sm w-full aspect-square max-w-[90px]'>
+            {Array.from({ length: 144 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className='bg-[#A2FF59] rounded-[0.5px] aspect-square shadow-[0_0_4px_rgba(16,185,129,0.3)]'
+                initial={{ opacity: 0.2 }}
+                animate={{ opacity: [0.2, 0.9, 0.2] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: (i % 12) * 0.08 + Math.floor(i / 12) * 0.04,
+                  ease: 'easeInOut',
+                }}
+              />
             ))}
           </div>
-          <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase mt-1'>
+        </div>
+
+        {/* ২. Middle Equalizer Box (Smooth Data Stream Effect) */}
+        <div className='flex flex-col items-center flex-1 h-full'>
+          <div className='w-full md:w-[120px] h-full bg-[#354E23] border-2  border-emerald-500/30 rounded-xl p-2 flex flex-col justify-center gap-1 relative overflow-hidden group'>
+            <div className='absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent opacity-50 bor' />
+            <motion.div
+              className='flex flex-col gap-1 w-full'
+              animate={{ y: [0, -49, 0] }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            >
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
+                  className='h-1.5 w-full bg-[#A2FF59] rounded-sm shadow-[0_0_8px_rgba(52,211,153,0.6)] animate-pulse'
+                  style={{ animationDelay: `${i * 150}ms` }}
+                />
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ৩. CPU Core Box (Random Processing Spark) */}
+        <div className='flex flex-col items-center gap-1.5 flex-1 mb-1'>
+          <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase'>
             CPU
           </span>
+          <div className='grid grid-cols-4 gap-[2px] p-1.5 bg-zinc-950/80 border border-white/50 rounded-sm w-full aspect-square max-w-[90px] content-start'>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className='bg-[#A2FF59] rounded-sm aspect-square shadow-[0_0_6px_rgba(52,211,153,0.5)]'
+                initial={{ opacity: 0.3 }}
+                animate={{ opacity: [0.3, 1, 0.6, 1, 0.3] }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  delay: Math.random() * 0.8,
+                  ease: 'linear',
+                }}
+              />
+            ))}
+            {/* খালি স্লটগুলো */}
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className='border border-zinc-900/40 rounded-sm aspect-square'
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -229,33 +259,40 @@ function GpuCpuVisual() {
 }
 
 function BarsVisual() {
-  const heights = [90, 75, 60, 48, 36, 26, 18]
+  const barSegments = [5, 4, 3, 2, 1]
 
   return (
-    <div
-      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5'
-      style={{
-        background:
-          'radial-gradient(circle at bottom, rgba(34,197,94,0.1), transparent 75%), #050505',
-      }}
-    >
-      <div className='absolute inset-0 flex items-end justify-center gap-2 px-6 pb-6'>
-        {heights.map((h, i) => (
+    <div className='relative w-full bg-[#050505] rounded-md flex items-end justify-center gap-3 px-6 '>
+      {barSegments.map((totalBlocks, barIdx) => {
+        return (
           <div
-            key={i}
-            className='w-6 rounded-t-[2px]'
-            style={{
-              height: `${h}%`,
-              background:
-                i < 3
-                  ? 'repeating-linear-gradient(180deg,#22c55e 0 3px,transparent 3px 5px)'
-                  : 'repeating-linear-gradient(180deg,rgba(34,197,94,0.2) 0 3px,transparent 3px 5px)',
-              boxShadow: i < 3 ? '0 0 20px rgba(34,197,94,0.4)' : 'none',
-              opacity: i >= 3 ? 0.4 : 1,
-            }}
-          />
-        ))}
-      </div>
+            key={barIdx}
+            className='w-10  flex flex-col gap-1 justify-end bg-[#354E23] '
+          >
+            {Array.from({ length: totalBlocks }).map((_, blockIdx) => (
+              <motion.div
+                key={blockIdx}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  delay: barIdx * 0.1 + (totalBlocks - blockIdx) * 0.05,
+                  duration: 0.3,
+                }}
+                style={{
+                  backgroundImage:
+                    barIdx === 0
+                      ? 'repeating-linear-gradient(135deg, #00FF66, #00FF66 2px, transparent 2px, transparent 6px)'
+                      : 'repeating-linear-gradient(135deg, #BFB7B7, #BFB7B7 2px, transparent 2px, transparent 6px)',
+
+                  opacity: barIdx === 0 ? 1 : 0.25,
+                }}
+                className={`h-8 w-full`}
+              />
+            ))}
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -263,40 +300,55 @@ function BarsVisual() {
 function LockVisual() {
   return (
     <div
-      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5'
+      className='relative h-56 w-full overflow-hidden rounded-md border border-white/5 bg-[#050505]'
       style={{
-        background:
-          'radial-gradient(circle at center, rgba(34,197,94,0.2), transparent 70%), #050505',
+        background: `radial-gradient(circle at center, rgba(16, 185, 129, 0.10) 0%, rgba(0, 100, 0, 0.5) 40%, transparent 70%),#050505`,
       }}
     >
-      {/* Figma style subtle corners */}
+      <div className='absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,_rgba(0,0,0,0.3)_50%)] bg-[size:100%_4px] opacity-40 pointer-events-none' />
+
       {[
-        'top-4 left-4 border-t border-l',
-        'top-4 right-4 border-t border-r',
-        'bottom-4 left-4 border-b border-l',
-        'bottom-4 right-4 border-b border-r',
+        'top-0 left-0 border-t-2 border-l-2',
+        'top-0 right-0 border-t-2 border-r-2',
+        'bottom-0 left-0 border-b-2 border-l-2',
+        'bottom-0 right-0 border-b-2 border-r-2',
       ].map((c) => (
-        <div key={c} className={`absolute h-3 w-3 border-white/30 ${c}`} />
+        <div key={c} className={`absolute h-4 w-4 border-white ${c}`} />
       ))}
 
       <div className='absolute inset-0 flex items-center justify-center'>
-        <div
-          className='relative flex h-24 w-24 items-center justify-center rounded-full'
-          style={{
-            background:
-              'radial-gradient(circle, rgba(34,197,94,0.4), transparent 75%)',
-            boxShadow: '0 0 40px rgba(34,197,94,0.3)',
-          }}
-        >
-          <div
-            className='absolute inset-1 rounded-full border border-green-500/30'
-            style={{ borderStyle: 'dashed' }}
+        <div className='relative flex h-36 w-36 items-center justify-center rounded-full'>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 15, ease: 'linear' }}
+            style={{
+              backgroundImage:
+                'repeating-conic-gradient(from 0deg, #00FF66 0deg 2deg, transparent 2deg 8deg)',
+            }}
+            className='absolute inset-0 rounded-full  opacity-60 filter drop-shadow-[0_0_4px_rgba(0,255,102,0.4)]'
           />
 
-          <Lock
-            className='relative z-10 h-7 w-7 text-white opacity-90'
-            strokeWidth={2}
+          {/* ভেতরের ডটেড বৃত্ত যা পালস করবে */}
+          <motion.div
+            animate={{ scale: [1, 1.04, 1] }}
+            transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
+            className='absolute inset-5 rounded-full border-2 border-dotted border-[#00FF66] opacity-90'
           />
+
+          {/* Lock */}
+          <div
+            className='relative flex h-24 w-24 items-center justify-center rounded-full  bg-[#0831087e] border border-[#00FF66]/20'
+            style={{
+              boxShadow:
+                '0 0 30px rgba(0, 255, 102, 0.25), inset 0 0 15px rgba(0, 255, 102, 0.1)',
+            }}
+          >
+            <Image src={lock} alt='Lock' className='h-[50px] w-[36px]' />
+            {/* <LockOpen
+              className='relative z-10 h-10 w-10 text-white filter drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]'
+              strokeWidth={2.5}
+            /> */}
+          </div>
         </div>
       </div>
     </div>

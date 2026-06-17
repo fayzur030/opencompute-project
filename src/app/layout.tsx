@@ -1,26 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/shared/Navbar'
-import { ThemeProvider } from './components/providers/theme-provider'
 import localFont from 'next/font/local'
 
 const neueMontreal = localFont({
   src: [
-    {
-      path: '../../public/fonts/NeueMontreal-Bold.otf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-BoldItalic.otf',
-      weight: '500',
-      style: 'italic',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-Italic.otf',
-      weight: '300',
-      style: 'italic',
-    },
     {
       path: '../../public/fonts/NeueMontreal-Light.otf',
       weight: '300',
@@ -29,6 +13,16 @@ const neueMontreal = localFont({
     {
       path: '../../public/fonts/NeueMontreal-LightItalic.otf',
       weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-Italic.otf',
+      weight: '400',
       style: 'italic',
     },
     {
@@ -42,9 +36,14 @@ const neueMontreal = localFont({
       style: 'italic',
     },
     {
-      path: '../../public/fonts/NeueMontreal-Regular.otf',
-      weight: '400',
+      path: '../../public/fonts/NeueMontreal-Bold.otf',
+      weight: '700',
       style: 'normal',
+    },
+    {
+      path: '../../public/fonts/NeueMontreal-BoldItalic.otf',
+      weight: '700',
+      style: 'italic',
     },
   ],
   variable: '--font-neue-montreal',
@@ -58,23 +57,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${neueMontreal.className} bg-black min-h-full flex flex-col bg-background text-foreground`}
+        className={`${neueMontreal.variable} bg-black min-h-screen flex flex-col text-foreground`}
       >
-        {/* <ThemeProvider
-          attribute='class'
-          defaultTheme='dark'
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <main className='pt-20 flex-1'>{children}</main>
-        </ThemeProvider> */}
-
         <Navbar />
         <main className='pt-20 flex-1'>{children}</main>
       </body>

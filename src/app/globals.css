@@ -1,5 +1,10 @@
 @import 'tailwindcss';
-
+body {
+  font-family: var(--font-neue-montreal);
+}
+.font-neue {
+  font-family: var(--font-neue-montreal);
+}
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -44,9 +49,21 @@ body {
   width: 100%;
   min-height: 100vh;
 } */
+
 .chart {
-  background-image: url('../../src/assets/Clip path group.png');
-  background-size: cover;
+  background-image: url('../assets/Ellipse.png');
   background-position: center;
   background-repeat: no-repeat;
+  background-size: 70%;
+  filter: blur(0px);
+  opacity: 0.9;
+}
+.glow-circle {
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.3) 0%,
+    rgba(16, 185, 129, 0.12) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  /* filter: blur(40px); */
 }

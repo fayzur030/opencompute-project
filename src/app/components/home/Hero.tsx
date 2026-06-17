@@ -61,8 +61,7 @@ const Hero = () => {
             <br className='block md:hidden lg:hidden' /> a decentralized
             network. OpenCompute
             <br className='hidden md:hidden lg:block' /> Protocol lets you
-             access, process, and
-            verify data securely and efficiently.
+            access, process, and verify data securely and efficiently.
           </p>
         </div>
 
