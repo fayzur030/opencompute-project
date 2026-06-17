@@ -44,8 +44,8 @@ body {
   width: 100%;
   min-height: 100vh;
 } */
-.hero {
-  background-image: url('../assets/Hero.png');
+.chart {
+  background-image: url('../../src/assets/Clip path group.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

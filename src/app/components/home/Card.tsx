@@ -1,35 +1,92 @@
 'use client'
 
 import { Lock } from 'lucide-react'
-
+import { motion } from 'framer-motion'
+import CountUp from './CountUp'
 const stats = [
-  { value: '500M nodes', label: 'Scale' },
-  { value: '10 ms startup', label: 'Execution speed' },
-  { value: '100 MB', label: 'Memory per instance' },
-  { value: '5 min per server', label: 'Task duration' },
+  { number: 500, suffix: 'M nodes', label: 'Scale' },
+  { number: 10, suffix: ' ms', label: 'Execution speed' },
+  { number: 100, suffix: ' MB', label: 'Memory per instance' },
+  { number: 5, suffix: ' min', label: 'Task duration' },
 ]
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.96,
+  },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.12,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+}
 
 export default function Cards() {
   return (
     <div className='mt-10 min-h-screen bg-black text-white antialiased selection:bg-green-500/30 '>
       {/* Stats Grid - Fixed Borders to match exactly like Figma */}
       <div className='border-[#2F3038] lg:border-t md:border-t md:border-b lg:border-b'>
-        <section className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 divide-y divide-[#2F3038] md:divide-y-0'>
+        <motion.section
+          variants={containerVariants}
+          initial='hidden'
+          whileInView='show'
+          viewport={{ once: true, amount: 0.1 }}
+          className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 divide-y divide-[#2F3038] md:divide-y-0'
+        >
           {stats.map((s, index) => (
-            <div
+            <motion.div
               key={s.label}
-              className={`p-6 md:p-10 flex flex-col justify-center mx-4 my-3 md:mx-0 md:my-0 rounded-2xl md:rounded-none border border-[#2F3038] md:border-0 py-8 ${index === 0 || index === 1 || index === 2 ? 'md:border-r md:border-r-[#2F3038]' : ''}`}
+              custom={index}
+              variants={cardVariants}
+              transition={{
+                type: 'spring',
+                stiffness: 250,
+                damping: 18,
+              }}
+              className={`p-6 md:p-10 flex flex-col justify-center mx-4 my-3 md:mx-0 md:my-0 rounded-2xl md:rounded-none border border-[#2F3038] md:border-0 py-8 hover:shadow-2xl hover:bg-white/[0.03] ${
+                index !== stats.length - 1
+                  ? 'md:border-r md:border-r-[#2F3038]'
+                  : ''
+              }`}
             >
-              <div className='text-xl font-normal tracking-tight text-white lg:text-4xl md:text-3xl'>
-                {s.value}
-              </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className='text-xl font-normal tracking-tight text-white lg:text-4xl md:text-3xl'
+              >
+                <CountUp to={s.number} suffix={s.suffix} />
+              </motion.div>
 
-              <div className='mt-1 text-xs lg:text-base md:text-base text-white/40'>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.35 }}
+                className='mt-1 text-xs lg:text-base md:text-base text-white/40'
+              >
                 {s.label}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-        </section>
+        </motion.section>
       </div>
 
       {/* Hero Section - Clean padding and responsive text matching the design */}
@@ -53,8 +110,7 @@ export default function Cards() {
       {/* Feature Cards Grid - Divider approach for perfect borders */}
 
       <div className='md:pl-10 lg:pl-16 pl-0'>
-        {' '}
-        <section className='grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto w-full border-t border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038]'>
+        <section className='grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto w-full border-t border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038] '>
           <FeatureCard
             number='// 01'
             title='Accelerate execution'
@@ -100,11 +156,11 @@ function FeatureCard({
         {number}
       </div>
 
-      <h3 className='text-lg font-semibold tracking-tight text-white md:text-xl border-l border-[#2F3038]'>
+      <h3 className='text-lg font-normal tracking-tight text-white md:text-xl border-l border-[#2F3038]'>
         {title}
       </h3>
 
-      <p className='mt-3 text-xs md:text-sm leading-relaxed text-white/40'>
+      <p className='mt-3 text-xs md:text-xs leading-relaxed text-[#FFFFFF]'>
         {description}
       </p>
 
@@ -115,21 +171,17 @@ function FeatureCard({
   )
 }
 
-// ---------------------------------------------------------------------------------
-// Visual Components (Figma UI Illustrations updated for seamless match)
-// ---------------------------------------------------------------------------------
-
 function GpuCpuVisual() {
   return (
     <div
-      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5'
+      className='relative h-48 w-full overflow-hidden rounded-md border border-white/5 '
       style={{
         background:
           'radial-gradient(ellipse at center bottom, rgba(34,197,94,0.15), transparent 80%), #050505',
       }}
     >
       <div
-        className='absolute inset-0 opacity-20'
+        className='absolute inset-0 opacity-20 '
         style={{
           backgroundImage:
             'radial-gradient(rgba(34,197,94,0.3) 1px, transparent 1px)',
@@ -137,7 +189,7 @@ function GpuCpuVisual() {
         }}
       />
 
-      <div className='relative flex h-full items-end justify-center gap-12 pb-6'>
+      <div className='relative flex h-full items-end justify-center gap-12 pb-6 '>
         {/* GPU */}
         <div className='flex flex-col items-center gap-2'>
           <div className='relative flex flex-col items-center'>
