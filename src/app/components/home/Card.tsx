@@ -215,7 +215,7 @@ function FeatureCard({
 
 function GpuCpuVisual() {
   return (
-    <div className='relative h-52 w-full overflow-hidden rounded-md  '>
+    <div className='relative h-52 w-full overflow-hidden rounded-md' >
       <div className=' inset-0 flex items-end justify-between gap-3 px-4  z-10 w-full h-full'>
         <div className='flex flex-col items-center gap-1.5 flex-1 mb-1'>
           <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase'>
