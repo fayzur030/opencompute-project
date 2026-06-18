@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 export default function FeaturesSection() {
   return (
-    <section className='bg-[#090A0B] text-white lg:mt-20 mt-5 py-16 px-4 md:px-8 lg:px-16 font-sans overflow-hidden'>
+    <section className=' text-white lg:mt-20 mt-5 py-16 px-4 md:px-8 lg:px-16 font-sans overflow-hidden'>
       <div className='max-w-7xl mx-auto'>
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start'>
           <div className='lg:col-span-7 space-y-4'>

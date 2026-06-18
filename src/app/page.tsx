@@ -1,9 +1,7 @@
 import Cards from './components/home/Card'
+import DevelopmentSection from './components/home/Development'
 import Expressive from './components/home/Expressive'
 import Hero from './components/home/Hero'
-import OpenComputeSpec from './components/home/text'
-import ComputeSpecsAnimated from './components/home/text'
-import ComputeSpecs from './components/home/text'
 
 export default function Home() {
   return (
@@ -11,6 +9,7 @@ export default function Home() {
       <Hero />
       <Cards />
       <Expressive />
+      <DevelopmentSection />
     </div>
   )
 }
