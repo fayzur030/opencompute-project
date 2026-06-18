@@ -1,6 +1,4 @@
 'use client'
-import bgImage from '../../../assets/Clip path group.png'
-import { Lock, LockKeyholeOpen, LockOpen } from 'lucide-react'
 import { motion } from 'framer-motion'
 import CountUp from './CountUp'
 import lock from '../../../assets/lock.png'
@@ -89,23 +87,43 @@ export default function Cards() {
       {/* Hero Section */}
       <div className='md:pl-10 lg:pl-16 pl-0'>
         <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full lg:border-l md:border-l border-[#2F3038]'>
-          <h1 className='text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-4xl lg:text-5xl'>
+          {/* TITLE */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className='text-4xl font-normal leading-[1.1] tracking-tight text-white md:text-4xl lg:text-5xl'
+          >
             GPU-Powered
             <br />
             On-Chain Execution
-          </h1>
+          </motion.h1>
 
-          <p className='mt-6 max-w-xl text-sm leading-relaxed text-[#E5E5E5] md:text-base'>
-            Open computer allows computations to be delegated to TEE-based off{' '}
-            <br /> chain micro services with proofs and attestations verified
-            on-chain.
-          </p>
+          {/* PARAGRAPH */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{
+              delay: 0.15,
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className='mt-6 max-w-xl text-sm leading-relaxed text-[#E5E5E5] md:text-base'
+          >
+            Open computer allows computations to be delegated to TEE-based off
+            chain micro services with proofs and attestations verified on-chain.
+          </motion.p>
         </section>
       </div>
 
       {/* Feature Cards Grid */}
-      <div className='md:pl-10 lg:pl-16 pl-0 lg:h-[543px]'>
-        <section className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl  mx-auto w-full border-t border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038] '>
+      <div className='md:pl-10 lg:pl-16 pl-0 lg:h-[543px] border md:border-0 border-[#2F3038]'>
+        <section className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl  mx-auto w-full md:border-t  border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038] '>
           <div
             className=''
             style={{
@@ -159,14 +177,35 @@ function FeatureCard({
         {number}
       </div>
 
-      <h3 className='text-lg md:text-xl font-normal tracking-tight text-[]#FFFFFF'>
+      {/* <h3 className='text-lg md:text-xl font-normal tracking-tight text-[]#FFFFFF'>
         {title}
-      </h3>
+      </h3> */}
+      <motion.h1
+        initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className='text-lg font-normal leading-[1.1] tracking-tight text-white md:text-3xl lg:text-4xl'
+      >
+        {title}
+      </motion.h1>
 
-      <p className='mt-3 font- text-xs md:text-xs leading-relaxed text-[#FFFFFF]/80'>
+      <motion.p
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{
+          delay: 0.15,
+          duration: 0.6,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className='mt-6 max-w-xl text-xs leading-relaxed text-[#E5E5E5] md:text-sm'
+      >
         {description}
-      </p>
-
+      </motion.p>
       <div className='mt-10 flex  flex-1 items-end justify-center w-full'>
         {visual}
       </div>
