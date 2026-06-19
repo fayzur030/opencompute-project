@@ -56,7 +56,7 @@ export default function Cards() {
               key={s.label}
               custom={index}
               variants={cardVariants}
-              className={`p-6 md:p-10 flex flex-col justify-center mx-4 my-3 md:mx-0 md:my-0 rounded-2xl md:rounded-none border border-[#2F3038] md:border-0 py-8 hover:shadow-2xl hover:bg-white/[0.03] ${
+              className={`p-6 md:p-10 flex flex-col justify-center mx-2 my-3 md:mx-0 md:my-0 rounded-2xl md:rounded-none border border-[#2F3038] md:border-0 py-8 hover:shadow-2xl hover:bg-white/[0.03] ${
                 index !== stats.length - 1
                   ? 'md:border-r md:border-r-[#2F3038]'
                   : ''
@@ -76,7 +76,7 @@ export default function Cards() {
 
       {/* Hero Section */}
       <div className='pl-0 md:pl-10 lg:pl-16'>
-        <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full md:border-l lg:border-l border-[#2F3038]'>
+        <section className='px-3 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full md:border-l lg:border-l border-[#2F3038]'>
           <m.h1
             initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

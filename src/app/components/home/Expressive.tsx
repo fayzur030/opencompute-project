@@ -4,7 +4,7 @@ import { m } from 'framer-motion'
 export default function FeaturesSection() {
   return (
     <section className=' text-white lg:mt-20 mt-5 py-16 px-4 md:px-8 lg:px-16 font-sans overflow-hidden'>
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto px-2 md:px-0'>
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start'>
           <div className='lg:col-span-7 space-y-4'>
             {/* Tag */}
@@ -21,7 +21,7 @@ export default function FeaturesSection() {
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className='text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-normal tracking-tight text-zinc-100 leading-[1.15] md:leading-[1.1]'
+              className='text-3xl sm:text-4xl  md:text-5xl lg:text-5xl font-normal tracking-tight text-zinc-100 leading-[1.15] md:leading-[1.1]'
             >
               Write code using familiar <br className='hidden lg:block' />
               languages and frameworks <br className='hidden lg:block' />

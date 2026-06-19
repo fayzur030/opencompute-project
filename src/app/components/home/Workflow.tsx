@@ -33,7 +33,7 @@ const Workflow = () => {
       </div>
       <div className='absolute inset-0 bg-black/70 md:bg-gradient-to-r xl:from-black xl:via-black/40 xl:to-transparent z-10 pointer-events-none' />
 
-      <div className='absolute inset-0 z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 flex items-center justify-center xl:justify-start'>
+      <div className='absolute inset-0 z-20 w-full max-w-7xl mx-auto px-1 md:px-1 flex items-center justify-center xl:justify-start'>
         <div className='w-full grid grid-cols-1 xl:grid-cols-12 items-center'>
           <m.div
             className='col-span-1 xl:col-span-7 flex flex-col items-center xl:items-start text-center xl:text-left space-y-6 xl:space-y-8 max-w-2xl mx-auto xl:mx-0'
