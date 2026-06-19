@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import CountUp from './CountUp'
 import lock from '../../../assets/lock.png'
 import Image from 'next/image'
+import { useMemo } from 'react'
+
 const stats = [
   { number: 500, suffix: 'M nodes', label: 'Scale' },
   { number: 10, suffix: ' ms', label: 'Execution speed' },
@@ -39,9 +41,9 @@ const cardVariants = {
 
 export default function Cards() {
   return (
-    <div className='mt-10 min-h-screen  text-white antialiased selection:bg-green-500/30 md:px-0 lg:px-0 px-3'>
+    <div className='mt-10 min-h-screen text-white antialiased selection:bg-green-500/30 px-3 md:px-0 lg:px-0'>
       {/* Stats Grid */}
-      <div className='border-[#2F3038] lg:border-t md:border-t md:border-b lg:border-b'>
+      <div className='border-[#2F3038] md:border-t md:border-b lg:border-t lg:border-b '>
         <motion.section
           variants={containerVariants}
           initial='hidden'
@@ -65,7 +67,7 @@ export default function Cards() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className='text-xl font-normal tracking-tight text-white lg:text-4xl md:text-3xl'
+                className='text-xl font-normal tracking-tight text-white md:text-3xl lg:text-4xl'
               >
                 <CountUp to={s.number} suffix={s.suffix} />
               </motion.div>
@@ -75,7 +77,7 @@ export default function Cards() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.35 }}
-                className='mt-1 text-xs lg:text-base md:text-base text-white/40'
+                className='mt-1 text-xs md:text-base lg:text-base text-white/40'
               >
                 {s.label}
               </motion.div>
@@ -85,9 +87,8 @@ export default function Cards() {
       </div>
 
       {/* Hero Section */}
-      <div className='md:pl-10 lg:pl-16 pl-0'>
-        <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full lg:border-l md:border-l border-[#2F3038]'>
-          {/* TITLE */}
+      <div className='pl-0 md:pl-10 lg:pl-16'>
+        <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full md:border-l lg:border-l border-[#2F3038]'>
           <motion.h1
             initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -103,7 +104,6 @@ export default function Cards() {
             On-Chain Execution
           </motion.h1>
 
-          {/* PARAGRAPH */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,16 +122,14 @@ export default function Cards() {
       </div>
 
       {/* Feature Cards Grid */}
-      <div className='md:pl-10 lg:pl-16 pl-0 lg:h-[543px] border md:border-0 border-[#2F3038]'>
-        <section className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 max-w-7xl  mx-auto w-full md:border-t  border-[#2F3038] divide-y md:divide-y-0 md:divide-x divide-[#2F3038] '>
+      <div className='pl-0 md:pl-10 lg:pl-16 border md:border-0 border-[#2F3038] '>
+        <section className='grid grid-cols-1 lg:grid-cols-3 max-w-7xl mx-auto w-full md:border-t border-[#2F3038] divide-y lg:divide-y-0 lg:divide-x divide-[#2F3038]'>
           <div
-            className=''
             style={{
-              background: `radial-gradient(circle at left center, rgba(34,197,94,0.12), transparent 25%), radial-gradient(circle at right center, rgba(34,197,94,0.12), transparent 25%), linear-gradient(180deg, #080808 0%, #030303 50%, #000000 100%`,
+              background: `radial-gradient(circle at left center, rgba(34,197,94,0.12), transparent 25%), radial-gradient(circle at right center, rgba(34,197,94,0.12), transparent 25%), linear-gradient(180deg, #080808 0%, #030303 50%, #000000 100%)`,
             }}
           >
             <FeatureCard
-              className=''
               number='// 01'
               title='Accelerate execution'
               description="Verifiable off-chain execution doesn't require redundant replication of computations and can thus produce results much faster."
@@ -171,16 +169,13 @@ function FeatureCard({
 }) {
   return (
     <div
-      className={`flex flex-col h-full p-6 md:p-10 ${className} border-l border-[#2F3038] shadow-[0_0_30px_rgba(162,255,89,0.3)] `}
+      className={`flex flex-col h-full p-6 md:p-10 ${className} shadow-[0_0_30px_rgba(162,255,89,0.05)] bg-[#050505]/40 border-l border-[#2F3038] `}
     >
-      <div className='mb-6  text-[11px] tracking-wider text-white/30'>
+      <div className='mb-6 text-[11px] tracking-wider text-white/30'>
         {number}
       </div>
 
-      {/* <h3 className='text-lg md:text-xl font-normal tracking-tight text-[]#FFFFFF'>
-        {title}
-      </h3> */}
-      <motion.h1
+      <motion.h3
         initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true, amount: 0.6 }}
@@ -188,10 +183,10 @@ function FeatureCard({
           duration: 0.7,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className='text-lg font-normal leading-[1.1] tracking-tight text-white md:text-3xl lg:text-4xl'
+        className='text-xl font-normal leading-[1.2] tracking-tight text-white md:text-2xl lg:text-3xl'
       >
         {title}
-      </motion.h1>
+      </motion.h3>
 
       <motion.p
         initial={{ opacity: 0, y: 30 }}
@@ -202,11 +197,12 @@ function FeatureCard({
           duration: 0.6,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className='mt-6 max-w-xl text-xs leading-relaxed text-[#E5E5E5] md:text-sm'
+        className='mt-4 max-w-xl text-xs leading-relaxed text-[#E5E5E5] md:text-sm flex-grow'
       >
         {description}
       </motion.p>
-      <div className='mt-10 flex  flex-1 items-end justify-center w-full'>
+
+      <div className='mt-10 flex items-end justify-center w-full min-h-[224px]'>
         {visual}
       </div>
     </div>
@@ -215,8 +211,8 @@ function FeatureCard({
 
 function GpuCpuVisual() {
   return (
-    <div className='relative h-52  w-full overflow-hidden rounded-md'>
-      <div className=' inset-0 flex items-end justify-between gap-3 px-4  z-10 w-full h-full'>
+    <div className='relative h-52 w-full overflow-hidden rounded-md'>
+      <div className='inset-0 flex items-end justify-between gap-3 px-4 z-10 w-full h-full'>
         <div className='flex flex-col items-center gap-1.5 flex-1 mb-1'>
           <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase'>
             GPU
@@ -239,10 +235,9 @@ function GpuCpuVisual() {
           </div>
         </div>
 
-        {/* ২. Middle Equalizer Box (Smooth Data Stream Effect) */}
-        <div className='flex flex-col items-center flex-1 h-full'>
-          <div className='w-full md:w-[120px] h-full bg-[#354E23] border-2  border-emerald-500/30 rounded-xl p-2 flex flex-col justify-center gap-1 relative overflow-hidden group'>
-            <div className='absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent opacity-50 bor' />
+        <div className='flex flex-col items-center flex-1 h-full justify-end pb-1 '>
+          <div className='w-full md:w-[120px] h-full bg-[#354E23] border-2 border-emerald-500/30 rounded-xl p-2 flex flex-col justify-center gap-1 relative overflow-hidden'>
+            <div className='absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent opacity-50' />
             <motion.div
               className='flex flex-col gap-1 w-full'
               animate={{ y: [0, -49, 0] }}
@@ -263,7 +258,6 @@ function GpuCpuVisual() {
           </div>
         </div>
 
-        {/* ৩. CPU Core Box (Random Processing Spark) */}
         <div className='flex flex-col items-center gap-1.5 flex-1 mb-1'>
           <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase'>
             CPU
@@ -278,12 +272,11 @@ function GpuCpuVisual() {
                 transition={{
                   duration: 1,
                   repeat: Infinity,
-                  delay: Math.random() * 0.8,
+                  delay: i * 0.05,
                   ease: 'linear',
                 }}
               />
             ))}
-            {/* খালি স্লটগুলো */}
             {Array.from({ length: 8 }).map((_, i) => (
               <div
                 key={i}
@@ -301,12 +294,12 @@ function BarsVisual() {
   const barSegments = [5, 4, 3, 2, 1]
 
   return (
-    <div className='relative w-full bg-[#050505] rounded-md flex items-end justify-center gap-3 px-6 '>
+    <div className='relative w-full h-52 bg-[#050505] rounded-md flex items-end justify-center gap-3 px-6 pb-2'>
       {barSegments.map((totalBlocks, barIdx) => {
         return (
           <div
             key={barIdx}
-            className='w-14 p-1.5 flex flex-col gap-1 justify-end bg-[#354E23] '
+            className='w-14 p-1.5 flex flex-col gap-1 justify-end bg-[#354E23]'
           >
             {Array.from({ length: totalBlocks }).map((_, blockIdx) => (
               <motion.div
@@ -321,12 +314,11 @@ function BarsVisual() {
                 style={{
                   backgroundImage:
                     barIdx === 0
-                      ? 'repeating-linear-gradient(135deg, #00FF66, #A2FF59 2px, transparent 2px, transparent 6px) border'
+                      ? 'repeating-linear-gradient(135deg, #00FF66, #A2FF59 2px, transparent 2px, transparent 6px)'
                       : 'repeating-linear-gradient(135deg, #BFB7B7, #BFB7B7 2px, transparent 2px, transparent 6px)',
-
                   opacity: barIdx === 0 ? 1 : 0.25,
                 }}
-                className={`h-9 w-full `}
+                className='h-9 w-full'
               />
             ))}
           </div>
@@ -336,12 +328,12 @@ function BarsVisual() {
   )
 }
 
-function LockVisual() {
+function CornerFrame({ children }: { children: React.ReactNode }) {
   return (
     <div
       className='relative h-56 w-full overflow-hidden rounded-md border border-white/5 bg-[#050505]'
       style={{
-        background: `radial-gradient(circle at center, rgba(16, 185, 129, 0.10) 0%, rgba(0, 100, 0, 0.5) 40%, transparent 70%),#050505`,
+        background: `radial-gradient(circle at center, rgba(16, 185, 129, 0.10) 0%, rgba(0, 100, 0, 0.15) 40%, transparent 70%), #050505`,
       }}
     >
       <div className='absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,_rgba(0,0,0,0.3)_50%)] bg-[size:100%_4px] opacity-40 pointer-events-none' />
@@ -354,42 +346,105 @@ function LockVisual() {
       ].map((c) => (
         <div key={c} className={`absolute h-4 w-4 border-white ${c}`} />
       ))}
+      {children}
+    </div>
+  )
+}
+function LockVisual() {
+  const lines = useMemo(() => {
+    const round = (n: number) => Number(n.toFixed(4))
 
-      <div className='absolute inset-0 flex items-center justify-center'>
-        <div className='relative flex h-36 w-36 items-center justify-center rounded-full'>
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 15, ease: 'linear' }}
-            style={{
-              backgroundImage:
-                'repeating-conic-gradient(from 0deg, #00FF66 0deg 2deg, transparent 2deg 8deg)',
-            }}
-            className='absolute inset-0 rounded-full  opacity-60 filter drop-shadow-[0_0_4px_rgba(0,255,102,0.4)]'
-          />
+    return Array.from({ length: 72 }, (_, i) => {
+      const angle = (i / 72) * Math.PI * 2
 
-          {/* ভেতরের ডটেড বৃত্ত যা পালস করবে */}
-          <motion.div
-            animate={{ scale: [1, 1.04, 1] }}
-            transition={{ repeat: Infinity, duration: 2.5, ease: 'easeInOut' }}
-            className='absolute inset-5 rounded-full border-2 border-dotted border-[#00FF66] opacity-90'
-          />
+      const r1 = 60
+      const r2 = 78
 
-          {/* Lock */}
-          <div
-            className='relative flex h-24 w-24 items-center justify-center rounded-full  bg-[#0831087e] border border-[#00FF66]/20'
-            style={{
-              boxShadow:
-                '0 0 30px rgba(0, 255, 102, 0.25), inset 0 0 15px rgba(0, 255, 102, 0.1)',
+      return {
+        x1: round(Math.cos(angle) * r1),
+        y1: round(Math.sin(angle) * r1),
+        x2: round(Math.cos(angle) * r2),
+        y2: round(Math.sin(angle) * r2),
+      }
+    })
+  }, [])
+
+  return (
+    <CornerFrame>
+      <div className='absolute inset-0 flex items-center justify-center '>
+        <div className='relative flex h-[180px] w-[180px] items-center justify-center '>
+          {/* Outer Ring */}
+          <motion.svg
+            width='180'
+            height='180'
+            viewBox='-100 -100 200 200'
+            className='absolute'
+            animate={{ rotate: -360 }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: 'linear',
             }}
           >
-            <Image src={lock} alt='Lock' className='h-[50px] w-[36px]' />
-            {/* <LockOpen
-              className='relative z-10 h-10 w-10 text-white filter drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]'
-              strokeWidth={2.5}
-            /> */}
-          </div>
+            {lines.map((line, i) => (
+              <line
+                key={i}
+                x1={line.x1}
+                y1={line.y1}
+                x2={line.x2}
+                y2={line.y2}
+                stroke='#354E23'
+                strokeWidth='1.5'
+              />
+            ))}
+          </motion.svg>
+
+          {/* Inner Circle */}
+          <motion.svg
+            width='180'
+            height='180'
+            viewBox='-100 -100 200 200'
+            className='absolute'
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          >
+            {/* <defs>
+              <radialGradient id='circleGradient' cx='50%' cy='50%' r='50%'>
+                <stop offset='0%' stopColor='#354E23' stopOpacity='0.35' />
+                <stop offset='70%' stopColor='#354E23' stopOpacity='0.12' />
+                <stop offset='100%' stopColor='#354E23' stopOpacity='0' />
+              </radialGradient>
+            </defs> */}
+
+            <circle
+              r='45'
+              fill='url(#circleGradient)'
+              stroke='#A2FF59'
+              strokeWidth='1.8'
+              strokeDasharray='4 4'
+            />
+          </motion.svg>
+
+          {/* Lock */}
+          <motion.div
+            className='absolute z-10 flex h-14 w-14 items-center justify-center text-white '
+            animate={{
+              scale: [1, 1.06, 1],
+            }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            <Image src={lock} alt='Lock' className='h-[40px] w-[26px]' />
+          </motion.div>
         </div>
       </div>
-    </div>
+    </CornerFrame>
   )
 }
