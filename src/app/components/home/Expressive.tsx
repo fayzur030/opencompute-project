@@ -21,7 +21,7 @@ export default function FeaturesSection() {
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-zinc-100 leading-[1.15] md:leading-[1.1]'
+              className='text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-normal tracking-tight text-zinc-100 leading-[1.15] md:leading-[1.1]'
             >
               Write code using familiar <br className='hidden lg:block' />
               languages and frameworks <br className='hidden lg:block' />

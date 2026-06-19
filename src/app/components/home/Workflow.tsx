@@ -35,12 +35,10 @@ const Workflow = () => {
 
       {/* ২. পারফেক্ট ডার্ক ওভারলে গ্রেডিয়েন্ট */}
       {/* মোবাইল এবং ট্যাবে ফুল ডার্ক ওভারলে টেক্সট ক্লিয়ার রাখার জন্য, ডেক্সটপে বাম থেকে ডানদিকের গ্রেডিয়েন্ট */}
-      <div className='absolute inset-0 bg-black/70 xl:bg-gradient-to-r xl:from-black xl:via-black/40 xl:to-transparent z-10 pointer-events-none' />
+      <div className='absolute inset-0 bg-black/70 md:bg-gradient-to-r xl:from-black xl:via-black/40 xl:to-transparent z-10 pointer-events-none' />
 
-      {/* ৩. মেইন কন্টেন্ট এরিয়া (মোবাইল ও ট্যাবে ফুল সেন্টার, লার্জ ডেক্সটপে ফিগমা লেআউট) */}
       <div className='absolute inset-0 z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 flex items-center justify-center xl:justify-start'>
         <div className='w-full grid grid-cols-1 xl:grid-cols-12 items-center'>
-          {/* কন্টেন্ট বক্স: মোবাইল, ট্যাব ও মিডিয়াম স্ক্রিনে সম্পূর্ণ সেন্টারড (items-center text-center) */}
           <motion.div
             className='col-span-1 xl:col-span-7 flex flex-col items-center xl:items-start text-center xl:text-left space-y-6 xl:space-y-8 max-w-2xl mx-auto xl:mx-0'
             variants={containerVariants}
@@ -50,7 +48,7 @@ const Workflow = () => {
           >
             {/* টাইপোগ্রাফি */}
             <motion.h1
-              className='text-white text-3xl sm:text-3xl md:text-4xl xl:text-[40px] leading-[1.3] font-normal tracking-normal'
+              className='text-white text-3xl sm:text-3xl md:text-4xl lg:text-4xl leading-[1.3] font-normal tracking-normal max-w-3xl'
               variants={itemVariants}
             >
               Unify your API stack into one seamless workflow. Start free,
