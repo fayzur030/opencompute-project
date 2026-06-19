@@ -14,14 +14,14 @@ export default function CountUp({ to, suffix = '' }: CountUpProps) {
 
   const isInView = useInView(ref, {
     once: true,
-    amount: 0.5,
+    amount: 0.15,
   })
 
   useEffect(() => {
     if (!isInView) return
 
     const controls = animate(0, to, {
-      duration: 3.8, // আগে ছিল 1.4
+      duration: 2, // আগে ছিল 1.4
       ease: [0.22, 1, 0.36, 1], // Smooth easing
       onUpdate(value) {
         setCount(Math.round(value))

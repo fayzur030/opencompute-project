@@ -1,10 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
-// Assets (আপনার পাথ অনুযায়ী ঠিক রাখুন)
 import DV1 from '../../../assets/DV1.png'
 import DV2 from '../../../assets/DV2.png'
 import F from '../../../assets/F.png'
@@ -23,7 +22,7 @@ const TAB_DATA = {
       desc2: 'Port existing Python, C++ or Go apps or use your favourite zkVM',
     },
     rightInfo: {
-      titleText1: 'LANGUAGES:', // হেডার টেক্সটও ডাইনামিক করার জন্য
+      titleText1: 'LANGUAGES:', 
       titleText2: 'FRAMEWORKS:',
       titleText3: 'AI MODELS:',
       languages1: 'Go | Rust | Python | SPI | ZK Wasm',
@@ -136,7 +135,7 @@ export default function DevelopmentSection() {
 
   const currentContent = TAB_DATA[activeTab]
 
-  // টাইপিং অ্যানিমেশন লজিক
+
   useEffect(() => {
     let timeout: NodeJS.Timeout
     let i = 0
@@ -179,7 +178,7 @@ export default function DevelopmentSection() {
             >
               {TAB_DATA[key].label}
               {activeTab === key && (
-                <motion.div
+                <m.div
                   layoutId='active-tab'
                   className='absolute inset-0 pointer-events-none'
                   transition={{ type: 'spring', stiffness: 350, damping: 30 }}
@@ -193,7 +192,7 @@ export default function DevelopmentSection() {
         <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 lg:pl-6  pt-6 items-start overflow-hidden'>
           {/* Left - Text Content Animation */}
           <AnimatePresence mode='wait'>
-            <motion.div
+            <m.div
               key={activeTab}
               variants={slideUpVariants}
               initial='hidden'
@@ -203,7 +202,7 @@ export default function DevelopmentSection() {
               className='space-y-8 py-4 pl-6 md:pl-6 lg:pl-0 '
             >
               <div>
-                <motion.h1
+                <m.h1
                   initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
                   whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -214,8 +213,8 @@ export default function DevelopmentSection() {
                   className='text-3xl md:max-w-xs font-normal leading-[1.1] tracking-tight text-white md:text-3xl lg:text-4xl'
                 >
                   {currentContent.leftContent.title1}
-                </motion.h1>
-                <motion.p
+                </m.h1>
+                <m.p
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -227,12 +226,12 @@ export default function DevelopmentSection() {
                   className='mt-2 max-w-xs text-[13px] leading-relaxed text-[#E5E5E5] md:text-sm'
                 >
                   {currentContent.leftContent.desc1}
-                </motion.p>
+                </m.p>
                 <p className='text-zinc-100/95 text-sm leading-relaxed'></p>
               </div>
 
               <div>
-                <motion.h1
+                <m.h1
                   initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
                   whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -243,8 +242,8 @@ export default function DevelopmentSection() {
                   className='text-3xl md:max-w-xs font-normal leading-[1.1] tracking-tight text-white md:text-3xl lg:text-4xl'
                 >
                   {currentContent.leftContent.title2}
-                </motion.h1>
-                <motion.p
+                </m.h1>
+                <m.p
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.6 }}
@@ -256,14 +255,14 @@ export default function DevelopmentSection() {
                   className='mt-2 max-w-xs text-[13px] leading-relaxed text-[#E5E5E5] md:text-sm'
                 >
                   {currentContent.leftContent.desc2}
-                </motion.p>
+                </m.p>
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
 
           {/* Right - Tech Info Layout and Code Window */}
           <AnimatePresence mode='wait'>
-            <motion.div
+            <m.div
               key={activeTab}
               variants={slideUpVariants}
               initial='hidden'
@@ -352,7 +351,7 @@ export default function DevelopmentSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       </div>

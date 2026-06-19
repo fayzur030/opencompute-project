@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 import Resources1 from '../../../assets/Resources1.png'
@@ -120,14 +120,14 @@ export default function ResourcesSection() {
   }, [currentIndex, page])
 
   const ResourceCard = ({ item }: { item: (typeof resourcesData)[0] }) => (
-    <motion.article
+    <m.article
       key={item.id}
       variants={cardVariants}
       whileHover='hover'
       className='group relative overflow-hidden border-b lg:border-b-0 md:border-r border-neutral-800 bg-[#050505] cursor-pointer h-full flex flex-col justify-between'
     >
       {/* Glow */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
@@ -136,7 +136,7 @@ export default function ResourcesSection() {
 
       {/* Image */}
       <div className='relative h-52 overflow-hidden'>
-        <motion.div
+        <m.div
           variants={floatingAnimation}
           animate='animate'
           whileHover={{
@@ -154,37 +154,37 @@ export default function ResourcesSection() {
             fill
             className='object-contain'
           />
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Content */}
       <div className='relative z-10 p-4 flex flex-col flex-grow'>
-        <motion.span
+        <m.span
           whileHover={{ color: '#fff' }}
           className='text-xs text-neutral-500 mb-2 inline-block'
         >
           {item.date}
-        </motion.span>
+        </m.span>
 
-        <motion.h3
+        <m.h3
           whileHover={{ x: 8 }}
           transition={{ duration: 0.3 }}
           className='text-xl font-normal leading-snug lg:mb-2'
         >
           {item.title}
-        </motion.h3>
+        </m.h3>
 
-        <motion.p
+        <m.p
           whileHover={{ y: -3 }}
           transition={{ duration: 0.3 }}
           className='text-xs leading-5 text-neutral-500 line-clamp-4 mt-5'
         >
           {item.description}
-        </motion.p>
+        </m.p>
       </div>
 
       {/* Bottom Line */}
-      <motion.div
+      <m.div
         initial={{ scaleX: 0 }}
         whileHover={{ scaleX: 1 }}
         transition={{ duration: 0.4 }}
@@ -192,19 +192,19 @@ export default function ResourcesSection() {
       />
 
       {/* Border Animation */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
         className='absolute inset-0 border border-green-500/40 pointer-events-none'
       />
-    </motion.article>
+    </m.article>
   )
 
   return (
     <section className='bg-black text-white py-20 px-6 md:px-10 lg:px-16 overflow-hidden'>
       {/* Header */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -224,10 +224,10 @@ export default function ResourcesSection() {
         <p className='mt-4 text-neutral-500 max-w-md mx-auto'>
           We have countless blog posts to get you started.
         </p>
-      </motion.div>
+      </m.div>
 
       {/* Desktop View */}
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial='hidden'
         whileInView='visible'
@@ -237,14 +237,14 @@ export default function ResourcesSection() {
         {resourcesData.map((item) => (
           <ResourceCard key={item.id} item={item} />
         ))}
-      </motion.div>
+      </m.div>
 
       {/* Mobile View with Centered Buttons */}
       <div className='block md:hidden max-w-sm mx-auto relative '>
         {/* Card Wrapper */}
         <div className='border border-neutral-800 overflow-hidden relative h-[450px] bg-[#050505]'>
           <AnimatePresence initial={false} custom={direction} mode='wait'>
-            <motion.div
+            <m.div
               key={page}
               custom={direction}
               variants={slideVariants}
@@ -254,7 +254,7 @@ export default function ResourcesSection() {
               className='absolute inset-0 w-full h-full'
             >
               <ResourceCard item={resourcesData[currentIndex]} />
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
 

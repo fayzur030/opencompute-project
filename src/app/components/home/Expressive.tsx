@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 export default function FeaturesSection() {
   return (
@@ -13,7 +13,7 @@ export default function FeaturesSection() {
               EXPRESSIVE
             </div>
             {/* Main Heading */}
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.3 }}
@@ -26,13 +26,13 @@ export default function FeaturesSection() {
               Write code using familiar <br className='hidden lg:block' />
               languages and frameworks <br className='hidden lg:block' />
               rewrite this content
-            </motion.h1>
+            </m.h1>
           </div>
 
           {/* Description */}
 
           <div className='lg:col-span-5 pt-2 lg:pt-14'>
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -47,7 +47,7 @@ export default function FeaturesSection() {
               infrastructure that dynamically scales based on workload
               requirements, providing secure, efficient, and fault-tolerant
               execution environments.
-            </motion.p>
+            </m.p>
           </div>
         </div>
       </div>

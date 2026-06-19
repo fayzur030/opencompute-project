@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import hero from '../../../assets/Hero.png'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 
 const Hero = () => {
   return (
@@ -25,13 +25,13 @@ const Hero = () => {
 
         <div className='absolute inset-0 z-20 pointer-events-none shadow-[inset_0_0_150px_90px_rgba(0,0,0,1)]' />
 
-        <motion.div
+        <m.div
           className='w-full px-4 z-10'
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.div
+          <m.div
             animate={{ y: [0, -8, 0] }}
             transition={{
               duration: 6,
@@ -45,8 +45,8 @@ const Hero = () => {
               alt='OpenCompute Wireframe Illustration'
               className='w-full h-full'
             />
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
 
       <div className='w-full max-w-7xl mx-auto mt-24 md:mt-0 lg:mt-0 md:pt-0 lg:pt-0 flex flex-col md:flex-row md:items-center lg:items-end md:justify-between gap-6 px-4 md:px-8 pb-10 z-30 relative md:absolute md:bottom-10 md:left-1/2 md:-translate-x-1/2 md:translate-y-0 lg:relative lg:-top-10 lg:left-0 lg:translate-x-0 lg:translate-y-0'>
@@ -68,7 +68,7 @@ const Hero = () => {
 
         <div className='flex items-center gap-4 shrink-0 z-30 md:ml-auto whitespace-nowrap pb-1 md:self-end lg:self-auto'>
           {/* Learn More Button */}
-          <motion.button
+          <m.button
             whileHover={{
               scale: 1.04,
               y: -2,
@@ -83,7 +83,7 @@ const Hero = () => {
             className='relative overflow-hidden border border-white/40 bg-white/[0.03] backdrop-blur-xl hover:bg-white hover:text-black text-white px-5 py-2.5 md:px-5 md:py-2.5 lg:px-6 lg:py-3 rounded-sm text-xs md:text-xs lg:text-sm font-medium flex items-center gap-2 group cursor-pointer'
           >
             {/* Glow Sweep */}
-            <motion.div
+            <m.div
               className='absolute inset-0 opacity-0 group-hover:opacity-100'
               animate={{
                 scale: [1, 1.15, 1],
@@ -101,17 +101,17 @@ const Hero = () => {
             />
 
             <span className='relative z-10'>Learn more</span>
-            <motion.span
+            <m.span
               className='relative z-10'
               animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
               →
-            </motion.span>
-          </motion.button>
+            </m.span>
+          </m.button>
 
           {/* Start Building Button */}
-          <motion.button
+          <m.button
             whileHover={{
               scale: 1.05,
               y: -3,
@@ -126,7 +126,7 @@ const Hero = () => {
             className='relative overflow-hidden bg-white text-black px-5 py-2.5 md:px-5 md:py-2.5 lg:px-6 lg:py-3 rounded-sm text-xs md:text-xs lg:text-sm font-medium flex items-center gap-2 group cursor-pointer'
           >
             {/* Shine effect */}
-            <motion.div
+            <m.div
               className='absolute inset-0 opacity-40'
               animate={{ x: ['-100%', '100%'] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -137,14 +137,14 @@ const Hero = () => {
             />
 
             <span className='relative z-10'>Start Building</span>
-            <motion.span
+            <m.span
               className='relative z-10'
               animate={{ x: [0, 5, 0] }}
               transition={{ duration: 1.2, repeat: Infinity }}
             >
               →
-            </motion.span>
-          </motion.button>
+            </m.span>
+          </m.button>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import CountUp from './CountUp'
 import lock from '../../../assets/lock.png'
 import Image from 'next/image'
@@ -32,7 +32,7 @@ const cardVariants = {
     y: 0,
     scale: 1,
     transition: {
-      delay: i * 0.12,
+      delay: i * 0.1,
       duration: 0.8,
       ease: [0.22, 1, 0.36, 1],
     },
@@ -43,16 +43,16 @@ export default function Cards() {
   return (
     <div className='mt-10 min-h-screen text-white antialiased selection:bg-green-500/30 px-3 md:px-0 lg:px-0'>
       {/* Stats Grid */}
-      <div className='border-[#2F3038] md:border-t md:border-b lg:border-t lg:border-b '>
-        <motion.section
+      <div className='border-[#2F3038] md:border-t md:border-b lg:border-t lg:border-b'>
+        <m.section
           variants={containerVariants}
           initial='hidden'
           whileInView='show'
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0.02 }}
           className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 divide-y divide-[#2F3038] md:divide-y-0'
         >
           {stats.map((s, index) => (
-            <motion.div
+            <m.div
               key={s.label}
               custom={index}
               variants={cardVariants}
@@ -62,34 +62,22 @@ export default function Cards() {
                   : ''
               }`}
             >
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className='text-xl font-normal tracking-tight text-white md:text-3xl lg:text-4xl'
-              >
+              <m.div className='text-xl font-normal tracking-tight text-white md:text-3xl lg:text-4xl'>
                 <CountUp to={s.number} suffix={s.suffix} />
-              </motion.div>
+              </m.div>
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.35 }}
-                className='mt-1 text-xs md:text-base lg:text-base text-white/40'
-              >
+              <m.div className='mt-1 text-xs md:text-base lg:text-base text-white/40'>
                 {s.label}
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           ))}
-        </motion.section>
+        </m.section>
       </div>
 
       {/* Hero Section */}
       <div className='pl-0 md:pl-10 lg:pl-16'>
         <section className='px-6 py-16 md:px-12 md:py-24 max-w-7xl mx-auto w-full md:border-l lg:border-l border-[#2F3038]'>
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, amount: 0.6 }}
@@ -102,9 +90,9 @@ export default function Cards() {
             GPU-Powered
             <br />
             On-Chain Execution
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
@@ -117,7 +105,7 @@ export default function Cards() {
           >
             Open computer allows computations to be delegated to TEE-based off
             chain micro services with proofs and attestations verified on-chain.
-          </motion.p>
+          </m.p>
         </section>
       </div>
 
@@ -175,7 +163,7 @@ function FeatureCard({
         {number}
       </div>
 
-      <motion.h3
+      <m.h3
         initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
         whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
         viewport={{ once: true, amount: 0.6 }}
@@ -186,9 +174,9 @@ function FeatureCard({
         className='text-xl font-normal leading-[1.2] tracking-tight text-white md:text-2xl lg:text-3xl'
       >
         {title}
-      </motion.h3>
+      </m.h3>
 
-      <motion.p
+      <m.p
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
@@ -200,7 +188,7 @@ function FeatureCard({
         className='mt-4 max-w-xl text-xs leading-relaxed text-[#E5E5E5] md:text-sm flex-grow'
       >
         {description}
-      </motion.p>
+      </m.p>
 
       <div className='mt-10 flex items-end justify-center w-full min-h-[224px]'>
         {visual}
@@ -219,7 +207,7 @@ function GpuCpuVisual() {
           </span>
           <div className='grid grid-cols-12 gap-[1px] bg-zinc-950/80 border border-white/50 rounded-sm w-full aspect-square max-w-[90px]'>
             {Array.from({ length: 144 }).map((_, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 className='bg-[#A2FF59] rounded-[0.5px] aspect-square shadow-[0_0_4px_rgba(16,185,129,0.3)]'
                 initial={{ opacity: 0.2 }}
@@ -238,7 +226,7 @@ function GpuCpuVisual() {
         <div className='flex flex-col items-center flex-1 h-full justify-end pb-1 '>
           <div className='w-full md:w-[120px] h-full bg-[#354E23] border-2 border-emerald-500/30 rounded-xl p-2 flex flex-col justify-center gap-1 relative overflow-hidden'>
             <div className='absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent opacity-50' />
-            <motion.div
+            <m.div
               className='flex flex-col gap-1 w-full'
               animate={{ y: [0, -49, 0] }}
               transition={{
@@ -254,7 +242,7 @@ function GpuCpuVisual() {
                   style={{ animationDelay: `${i * 150}ms` }}
                 />
               ))}
-            </motion.div>
+            </m.div>
           </div>
         </div>
 
@@ -264,7 +252,7 @@ function GpuCpuVisual() {
           </span>
           <div className='grid grid-cols-4 gap-[2px] p-1.5 bg-zinc-950/80 border border-white/50 rounded-sm w-full aspect-square max-w-[90px] content-start'>
             {Array.from({ length: 8 }).map((_, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 className='bg-[#A2FF59] rounded-sm aspect-square shadow-[0_0_6px_rgba(52,211,153,0.5)]'
                 initial={{ opacity: 0.3 }}
@@ -302,7 +290,7 @@ function BarsVisual() {
             className='w-14 p-1.5 flex flex-col gap-1 justify-end bg-[#354E23]'
           >
             {Array.from({ length: totalBlocks }).map((_, blockIdx) => (
-              <motion.div
+              <m.div
                 key={blockIdx}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -374,7 +362,7 @@ function LockVisual() {
       <div className='absolute inset-0 flex items-center justify-center '>
         <div className='relative flex h-[180px] w-[180px] items-center justify-center '>
           {/* Outer Ring */}
-          <motion.svg
+          <m.svg
             width='180'
             height='180'
             viewBox='-100 -100 200 200'
@@ -397,10 +385,10 @@ function LockVisual() {
                 strokeWidth='1.5'
               />
             ))}
-          </motion.svg>
+          </m.svg>
 
           {/* Inner Circle */}
-          <motion.svg
+          <m.svg
             width='180'
             height='180'
             viewBox='-100 -100 200 200'
@@ -427,10 +415,10 @@ function LockVisual() {
               strokeWidth='1.8'
               strokeDasharray='4 4'
             />
-          </motion.svg>
+          </m.svg>
 
           {/* Lock */}
-          <motion.div
+          <m.div
             className='absolute z-10 flex h-14 w-14 items-center justify-center text-white '
             animate={{
               scale: [1, 1.06, 1],
@@ -442,7 +430,7 @@ function LockVisual() {
             }}
           >
             <Image src={lock} alt='Lock' className='h-[40px] w-[26px]' />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </CornerFrame>

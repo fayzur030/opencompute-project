@@ -1,7 +1,6 @@
 import Link from 'next/link'
 
 const Footer = () => {
-  // সোশ্যাল মিডিয়া আইকন এবং লিংকের অ্যারে
   const socialLinks = [
     {
       name: 'Twitter',
@@ -49,7 +48,6 @@ const Footer = () => {
     },
   ]
 
-  // নেভিগেশন লিংকগুলোর জন্য ডাটা অ্যারে
   const footerSections = [
     {
       title: 'Home',
