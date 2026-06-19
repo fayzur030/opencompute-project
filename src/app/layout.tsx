@@ -1,54 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/shared/Navbar'
-import localFont from 'next/font/local'
-
-const neueMontreal = localFont({
-  src: [
-    {
-      path: '../../public/fonts/NeueMontreal-Light.otf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-LightItalic.otf',
-      weight: '300',
-      style: 'italic',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-Regular.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-Italic.otf',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-Medium.otf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-MediumItalic.otf',
-      weight: '500',
-      style: 'italic',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-Bold.otf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/NeueMontreal-BoldItalic.otf',
-      weight: '700',
-      style: 'italic',
-    },
-  ],
-  variable: '--font-neue-montreal',
-  display: 'swap',
-})
+import { neueMontreal } from '@/fonts'
 
 export const metadata: Metadata = {
   title: 'Create Next App',

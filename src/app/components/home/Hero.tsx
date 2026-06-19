@@ -57,7 +57,7 @@ const Hero = () => {
             <br className='block md:hidden lg:hidden' /> at Scale
           </h1>
 
-          <p className='text-gray-400 text-sm lg:text-base md:text-sm font-normal'>
+          <p className='text-[#E5E5E5] text-sm lg:text-base md:text-sm font-normal'>
             Harness the power of scalable coprocessors across{' '}
             <br className='block md:hidden lg:hidden' /> a decentralized
             network. OpenCompute
