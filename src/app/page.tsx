@@ -4,6 +4,7 @@ import Expressive from './components/home/Expressive'
 import Hero from './components/home/Hero'
 import ResourcesSection from './components/home/Resources'
 import NetworkCanvas from './components/home/text'
+import Workflow from './components/home/Workflow'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Expressive />
       <DevelopmentSection />
       <ResourcesSection />
+      <Workflow />
     </div>
   )
 }

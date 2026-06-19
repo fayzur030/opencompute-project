@@ -19,7 +19,8 @@ const Hero = () => {
         <div className='absolute inset-0 bg-black/40' />
       </div>
 
-      <div className='hidden md:flex w-full flex-grow justify-center  items-center relative mb-16 overflow-hidden bg-black'>
+      {/* ইমেজ সেকশন: ব্যাকগ্রাউন্ডে ফিট থাকবে */}
+      <div className='hidden md:flex w-full flex-grow justify-center items-center relative mb-16 overflow-hidden bg-black'>
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-purple-600/10 blur-[130px] rounded-full pointer-events-none' />
 
         <div className='absolute inset-0 z-20 pointer-events-none shadow-[inset_0_0_150px_90px_rgba(0,0,0,1)]' />
@@ -47,16 +48,16 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Bottom content (same for both) */}
-      <div className='w-full max-w-7xl mx-auto mt-24 md:mt-0 lg:mt-0 md:pt-0 lg:pt-0 flex flex-col md:flex-row md:items-end md:justify-between gap-8 px-4 md:px-8 pb-10 z-30 relative'>
-        <div className='lg:absolute lg:bottom-15 z-30'>
-          <h1 className=' md:text-4xl lg:text-6xl font-italic tracking-tight mb-4 font-italic text-4xl '>
+      <div className='w-full max-w-7xl mx-auto mt-24 md:mt-0 lg:mt-0 md:pt-0 lg:pt-0 flex flex-col md:flex-row md:items-center lg:items-end md:justify-between gap-6 px-4 md:px-8 pb-10 z-30 relative md:absolute md:bottom-10 md:left-1/2 md:-translate-x-1/2 md:translate-y-0 lg:relative lg:-top-10 lg:left-0 lg:translate-x-0 lg:translate-y-0'>
+    
+        <div className='lg:absolute lg:bottom-15 z-30 max-w-xl lg:max-w-none text-left'>
+          <h1 className='text-4xl md:text-4xl lg:text-5xl tracking-tight mb-4 font-normal'>
             Decentralized <br className='block md:hidden lg:hidden' /> Compute{' '}
-            <br className='hidden md:hidden lg:block' /> Verified{' '}
+            <br className='hidden md:block lg:block' /> Verified{' '}
             <br className='block md:hidden lg:hidden' /> at Scale
           </h1>
 
-          <p className='text-gray-400 text-sm lg:text-base md:text-base font-normal '>
+          <p className='text-gray-400 text-sm lg:text-base md:text-sm font-normal'>
             Harness the power of scalable coprocessors across{' '}
             <br className='block md:hidden lg:hidden' /> a decentralized
             network. OpenCompute
@@ -65,8 +66,7 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Buttons */}
-        <div className='flex items-center gap-4 shrink-0 z-30 md:ml-auto whitespace-nowrap pb-1'>
+        <div className='flex items-center gap-4 shrink-0 z-30 md:ml-auto whitespace-nowrap pb-1 md:self-end lg:self-auto'>
           {/* Learn More Button */}
           <motion.button
             whileHover={{
@@ -80,7 +80,7 @@ const Hero = () => {
               stiffness: 260,
               damping: 18,
             }}
-            className='relative overflow-hidden border border-white/40 bg-white/[0.03] backdrop-blur-xl hover:bg-white hover:text-black text-white px-6 py-3 rounded-sm text-sm font-medium flex items-center gap-2 group cursor-pointer'
+            className='relative overflow-hidden border border-white/40 bg-white/[0.03] backdrop-blur-xl hover:bg-white hover:text-black text-white px-5 py-2.5 md:px-5 md:py-2.5 lg:px-6 lg:py-3 rounded-sm text-xs md:text-xs lg:text-sm font-medium flex items-center gap-2 group cursor-pointer'
           >
             {/* Glow Sweep */}
             <motion.div
@@ -101,15 +101,10 @@ const Hero = () => {
             />
 
             <span className='relative z-10'>Learn more</span>
-
-            {/* Arrow animation */}
             <motion.span
               className='relative z-10'
               animate={{ x: [0, 4, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-              }}
+              transition={{ duration: 1.5, repeat: Infinity }}
             >
               →
             </motion.span>
@@ -128,19 +123,13 @@ const Hero = () => {
               stiffness: 260,
               damping: 18,
             }}
-            className='relative overflow-hidden bg-white text-black px-6 py-3 rounded-sm text-sm font-medium flex items-center gap-2 group cursor-pointer'
+            className='relative overflow-hidden bg-white text-black px-5 py-2.5 md:px-5 md:py-2.5 lg:px-6 lg:py-3 rounded-sm text-xs md:text-xs lg:text-sm font-medium flex items-center gap-2 group cursor-pointer'
           >
             {/* Shine effect */}
             <motion.div
               className='absolute inset-0 opacity-40'
-              animate={{
-                x: ['-100%', '100%'],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
               style={{
                 background:
                   'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
@@ -148,15 +137,10 @@ const Hero = () => {
             />
 
             <span className='relative z-10'>Start Building</span>
-
-            {/* Arrow animation */}
             <motion.span
               className='relative z-10'
               animate={{ x: [0, 5, 0] }}
-              transition={{
-                duration: 1.2,
-                repeat: Infinity,
-              }}
+              transition={{ duration: 1.2, repeat: Infinity }}
             >
               →
             </motion.span>
