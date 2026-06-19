@@ -14,11 +14,11 @@ const stats = [
 
 const containerVariants = {
   hidden: {},
-  // show: {
-  //   transition: {
-  //     staggerChildren: 0.15,
-  //   },
-  // },
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
 }
 
 const cardVariants = {

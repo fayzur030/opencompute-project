@@ -2,9 +2,10 @@
 import { m } from 'framer-motion'
 import image from '../../../assets/workflow.png'
 import Image from 'next/image'
+import { Variants } from 'framer-motion'
 
 const Workflow = () => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -12,7 +13,7 @@ const Workflow = () => {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,

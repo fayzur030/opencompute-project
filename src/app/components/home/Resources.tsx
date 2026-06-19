@@ -2,14 +2,23 @@
 
 import { useState, useEffect } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 
 import Resources1 from '../../../assets/Resources1.png'
 import Resources2 from '../../../assets/Resources2.png'
 import Resources3 from '../../../assets/Resources3.png'
 import Resources4 from '../../../assets/network.png'
+import { Variants } from 'framer-motion'
 
-const resourcesData = [
+interface ResourceItem {
+  id: number
+  date: string
+  title: string
+  description: string
+  image: StaticImageData
+}
+
+const resourcesData: ResourceItem[] = [
   {
     id: 1,
     date: 'March 27, 2026',
@@ -44,7 +53,7 @@ const resourcesData = [
   },
 ]
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -69,9 +78,9 @@ const cardVariants = {
       ease: [0.22, 1, 0.36, 1],
     },
   },
-}
+} as const
 
-const floatingAnimation = {
+const floatingAnimation: Variants = {
   animate: {
     y: [0, -8, 0],
     transition: {
@@ -80,9 +89,9 @@ const floatingAnimation = {
       ease: 'easeInOut',
     },
   },
-}
+} as const
 
-const slideVariants = {
+const slideVariants: Variants = {
   enter: (direction: number) => ({
     x: direction > 0 ? 300 : -300,
     opacity: 0,
@@ -98,6 +107,87 @@ const slideVariants = {
     transition: { duration: 0.4, ease: 'easeInOut' },
   }),
 }
+
+const ResourceCard = ({ item }: { item: ResourceItem }) => (
+  <m.article
+    variants={cardVariants}
+    whileHover='hover'
+    className='group relative overflow-hidden border-b lg:border-b-0 md:border-r border-neutral-800 bg-[#050505] cursor-pointer h-full flex flex-col justify-between'
+  >
+    {/* Glow */}
+    <m.div
+      initial={{ opacity: 0 }}
+      whileHover={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className='absolute inset-0 bg-[radial-gradient(circle_at_top,#153a24,transparent_70%)] pointer-events-none'
+    />
+
+    {/* Image */}
+    <div className='relative h-52 overflow-hidden'>
+      <m.div
+        variants={floatingAnimation}
+        animate='animate'
+        whileHover={{
+          scale: 1.08,
+          transition: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+          },
+        }}
+        className='w-full h-full'
+      >
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className='object-contain'
+        />
+      </m.div>
+    </div>
+
+    {/* Content */}
+    <div className='relative z-10 p-4 flex flex-col flex-grow'>
+      <m.span
+        whileHover={{ color: '#fff' }}
+        className='text-xs text-neutral-500 mb-2 inline-block'
+      >
+        {item.date}
+      </m.span>
+
+      <m.h3
+        whileHover={{ x: 8 }}
+        transition={{ duration: 0.3 }}
+        className='text-xl font-normal leading-snug lg:mb-2'
+      >
+        {item.title}
+      </m.h3>
+
+      <m.p
+        whileHover={{ y: -3 }}
+        transition={{ duration: 0.3 }}
+        className='text-xs leading-5 text-neutral-500 line-clamp-4 mt-5'
+      >
+        {item.description}
+      </m.p>
+    </div>
+
+    {/* Bottom Line */}
+    <m.div
+      initial={{ scaleX: 0 }}
+      whileHover={{ scaleX: 1 }}
+      transition={{ duration: 0.4 }}
+      className='origin-left absolute bottom-0 left-0 h-[2px] w-full bg-green-400'
+    />
+
+    {/* Border Animation */}
+    <m.div
+      initial={{ opacity: 0 }}
+      whileHover={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className='absolute inset-0 border border-green-500/40 pointer-events-none'
+    />
+  </m.article>
+)
 
 export default function ResourcesSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -118,88 +208,6 @@ export default function ResourcesSection() {
     }, 4000)
     return () => clearInterval(timer)
   }, [currentIndex, page])
-
-  const ResourceCard = ({ item }: { item: (typeof resourcesData)[0] }) => (
-    <m.article
-      key={item.id}
-      variants={cardVariants}
-      whileHover='hover'
-      className='group relative overflow-hidden border-b lg:border-b-0 md:border-r border-neutral-800 bg-[#050505] cursor-pointer h-full flex flex-col justify-between'
-    >
-      {/* Glow */}
-      <m.div
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className='absolute inset-0 bg-[radial-gradient(circle_at_top,#153a24,transparent_70%)] pointer-events-none'
-      />
-
-      {/* Image */}
-      <div className='relative h-52 overflow-hidden'>
-        <m.div
-          variants={floatingAnimation}
-          animate='animate'
-          whileHover={{
-            scale: 1.08,
-            transition: {
-              duration: 0.6,
-              ease: [0.22, 1, 0.36, 1],
-            },
-          }}
-          className='w-full h-full'
-        >
-          <Image
-            src={item.image}
-            alt={item.title}
-            fill
-            className='object-contain'
-          />
-        </m.div>
-      </div>
-
-      {/* Content */}
-      <div className='relative z-10 p-4 flex flex-col flex-grow'>
-        <m.span
-          whileHover={{ color: '#fff' }}
-          className='text-xs text-neutral-500 mb-2 inline-block'
-        >
-          {item.date}
-        </m.span>
-
-        <m.h3
-          whileHover={{ x: 8 }}
-          transition={{ duration: 0.3 }}
-          className='text-xl font-normal leading-snug lg:mb-2'
-        >
-          {item.title}
-        </m.h3>
-
-        <m.p
-          whileHover={{ y: -3 }}
-          transition={{ duration: 0.3 }}
-          className='text-xs leading-5 text-neutral-500 line-clamp-4 mt-5'
-        >
-          {item.description}
-        </m.p>
-      </div>
-
-      {/* Bottom Line */}
-      <m.div
-        initial={{ scaleX: 0 }}
-        whileHover={{ scaleX: 1 }}
-        transition={{ duration: 0.4 }}
-        className='origin-left absolute bottom-0 left-0 h-[2px] w-full bg-green-400'
-      />
-
-      {/* Border Animation */}
-      <m.div
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className='absolute inset-0 border border-green-500/40 pointer-events-none'
-      />
-    </m.article>
-  )
 
   return (
     <section className='bg-black text-white py-20 px-6 md:px-10 lg:px-16 overflow-hidden'>
@@ -258,7 +266,7 @@ export default function ResourcesSection() {
           </AnimatePresence>
         </div>
 
-        {/* Left Arrow Button (Centered Vertically) */}
+        {/* Left Arrow Button */}
         <button
           onClick={() => paginate(-1)}
           className='absolute -left-5 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full border border-neutral-800 bg-neutral-950/80 backdrop-blur-sm flex items-center justify-center text-neutral-400 hover:text-white transition-colors active:scale-95 shadow-lg shadow-black/50'
@@ -267,7 +275,7 @@ export default function ResourcesSection() {
           ←
         </button>
 
-        {/* Right Arrow Button (Centered Vertically) */}
+        {/* Right Arrow Button */}
         <button
           onClick={() => paginate(1)}
           className='absolute -right-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full border border-neutral-800 bg-neutral-950/80 backdrop-blur-sm flex items-center justify-center text-neutral-400 hover:text-white transition-colors active:scale-95 shadow-lg shadow-black/50'
@@ -276,7 +284,7 @@ export default function ResourcesSection() {
           →
         </button>
 
-        {/* Indicators (Dots) underneath the card */}
+        {/* Indicators (Dots) */}
         <div className='flex justify-center gap-2 mt-6'>
           {resourcesData.map((_, index) => (
             <span
