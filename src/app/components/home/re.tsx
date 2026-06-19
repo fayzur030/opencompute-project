@@ -30,7 +30,4 @@
                 </div>
               </motion.div>
             ))}
-          </div> mobile ey potita card ey border hobey destop ey same takbey
-
-
-          className='rounded-md border lg:border-t md:bor border-neutral-800 bg-[#0b0d0c] py-8 px-4 sm:rounded-none sm:border-0 sm:bg-transparent sm:py-10 sm:pr-6 sm:pl-8 first:sm:pl-0'
+          </div> 

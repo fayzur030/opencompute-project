@@ -276,9 +276,8 @@ export default function DevelopmentSection() {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 lg:pl-6 md:pl-6 '>
                   {/* Left Info Panel (এখন সম্পূর্ণ ডাইনামিক) */}
                   <div className='space-y-5 text-[10px] lg:pl-0 md:pl-0 pl-6'>
-                    {/* LANGUAGES */}
                     <div>
-                      <h1 className='text-[#FFFFFF] text-lg mb-1 font-medium tracking-tight'>
+                      <h1 className='text-[#FFFFFF] text-lg mb-1 font-normal tracking-tight'>
                         {currentContent.rightInfo.titleText1}
                       </h1>
                       <p className='text-[#71717A] text-xs'>

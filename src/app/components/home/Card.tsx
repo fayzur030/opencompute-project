@@ -39,7 +39,7 @@ const cardVariants = {
 
 export default function Cards() {
   return (
-    <div className='mt-10 min-h-screen bg-black text-white antialiased selection:bg-green-500/30 '>
+    <div className='mt-10 min-h-screen  text-white antialiased selection:bg-green-500/30 md:px-0 lg:px-0 px-3'>
       {/* Stats Grid */}
       <div className='border-[#2F3038] lg:border-t md:border-t md:border-b lg:border-b'>
         <motion.section
@@ -215,7 +215,7 @@ function FeatureCard({
 
 function GpuCpuVisual() {
   return (
-    <div className='relative h-52 w-full overflow-hidden rounded-md' >
+    <div className='relative h-52  w-full overflow-hidden rounded-md'>
       <div className=' inset-0 flex items-end justify-between gap-3 px-4  z-10 w-full h-full'>
         <div className='flex flex-col items-center gap-1.5 flex-1 mb-1'>
           <span className='font-mono text-[10px] tracking-widest text-white/40 uppercase'>
@@ -306,7 +306,7 @@ function BarsVisual() {
         return (
           <div
             key={barIdx}
-            className='w-10  flex flex-col gap-1 justify-end bg-[#354E23] '
+            className='w-14 p-1.5 flex flex-col gap-1 justify-end bg-[#354E23] '
           >
             {Array.from({ length: totalBlocks }).map((_, blockIdx) => (
               <motion.div
@@ -321,12 +321,12 @@ function BarsVisual() {
                 style={{
                   backgroundImage:
                     barIdx === 0
-                      ? 'repeating-linear-gradient(135deg, #00FF66, #00FF66 2px, transparent 2px, transparent 6px)'
+                      ? 'repeating-linear-gradient(135deg, #00FF66, #A2FF59 2px, transparent 2px, transparent 6px) border'
                       : 'repeating-linear-gradient(135deg, #BFB7B7, #BFB7B7 2px, transparent 2px, transparent 6px)',
 
                   opacity: barIdx === 0 ? 1 : 0.25,
                 }}
-                className={`h-8 w-full`}
+                className={`h-9 w-full `}
               />
             ))}
           </div>

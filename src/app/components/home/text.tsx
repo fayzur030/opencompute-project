@@ -1,141 +1,123 @@
 'use client'
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from 'react'
+import { motion } from 'framer-motion'
+// ডামি ডাটা (আপনার ফিগমা ফাইলের উপর ভিত্তি করে)
+const resourcesData = [
+  {
+    id: 1,
+    date: 'March 27, 2026',
+    title: 'Oyster vs. zkML: TEE-Based AI Benchmark',
+    description:
+      'In the previous part of this article series, we explored the pitfalls of centralized AI and how web3 could alleviate them. However, running models on-chain is impossible without paying extremely high gas fees.',
+    image:
+      'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=400&q=80', // আপনার ফিগমার গ্রাফিক্স বা ইমেজ এখানে বসাবেন
+  },
+  {
+    id: 2,
+    date: 'April 12, 2026',
+    title: 'Private ZK Proofs with Kalypso TEEs',
+    description:
+      'In our previous article, Securing decentralized ZK prover networks through restaking, we explored the case for prover marketplaces, briefly touched upon the architecture of Kalypso and explained its merits.',
+    image:
+      'https://images.unsplash.com/photo-1644024314755-57f89db3132e?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    id: 3,
+    date: 'May 20, 2026',
+    title: 'Networking in AWS Nitro Enclaves with Dual Proxies ...',
+    description:
+      'AWS Nitro Enclaves is a Trusted Execution Environment (TEE) implementation based on the AWS Nitro TPM security chip.',
+    image:
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80',
+  },
+  {
+    id: 4,
+    date: 'June 27, 2026',
+    title: 'Securing decentralized ZK prover networks through restaking',
+    description:
+      'We are pleased to share that Kalypso, the ZK proof marketplace, will be collaborating with Symbiotic in a first of its kind partnership to secure decentralized prover networks with restaked ETH.',
+    image:
+      'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=400&q=80',
+  },
+]
 
-export default function OpenComputeFeatures() {
-  // Animation variants for the container cards
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: "easeOut", when: "beforeChildren", staggerChildren: 0.1 } 
-    }
-  };
+// অ্যানিমেশন ভ্যারিয়েন্টস (Framer Motion)
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15, // একটির পর আরেকটি কার্ড অ্যানিমেট হবে
+    },
+  },
+}
 
-  // Bar chart data for section 02
-  const barHeights = [5, 4, 3, 2, 1]; // Number of segments per bar
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+}
 
+export default function ResourcesSection() {
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans flex items-center justify-center p-8 overflow-hidden select-none">
-      <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 border-l border-zinc-900 pl-4 md:pl-8">
-        
-        {/* --- SECTION 02: REDUCE COST --- */}
-        <motion.div 
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex flex-col justify-between p-6 rounded-2xl min-h-[450px]"
-        >
-          <div>
-            <span className="text-[#39FF14] font-mono text-sm tracking-wider block mb-4 opacity-80"> 02</span>
-            <h2 className="text-3xl font-semibold tracking-tight mb-4">Reduce cost</h2>
-            <p className="text-zinc-400 font-normal leading-relaxed text-[15px] max-w-md">
-              Onchain verification of proofs is usually orders of magnitude cheaper than carrying out the entire computation completely onchain.
-            </p>
-          </div>
-
-          {/* Animated Bar Chart Graphic */}
-          <div className="h-44 flex items-end gap-3 mt-8 relative">
-            {/* Soft Green Glow Behind Chart */}
-            <div className="absolute inset-0 bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none" />
-            
-            {barHeights.map((segments, barIdx) => (
-              <div key={barIdx} className="flex flex-col gap-[3px] w-10">
-                {Array.from({ length: segments }).map((_, segIdx) => (
-                  <motion.div
-                    key={segIdx}
-                    initial={{ opacity: 0, scaleY: 0 }}
-                    whileInView={{ opacity: 1, scaleY: 1 }}
-                    transition={{ 
-                      delay: barIdx * 0.15 + (segments - segIdx) * 0.05, 
-                      duration: 0.4, 
-                      ease: "easeOut" 
-                    }}
-                    style={{
-                      // Custom striped pattern mimicking the screenshot
-                      backgroundImage: `radial-gradient(circle, transparent 20%, transparent 20%), linear-gradient(135deg, currentColor 25%, transparent 25%, transparent 50%, currentColor 50%, currentColor 75%, transparent 75%, transparent)`,
-                      backgroundSize: '8px 8px'
-                    }}
-                    className={`h-7 w-full border border-dashed rounded-[2px] origin-bottom ${
-                      barIdx === 0 
-                        ? 'text-[#00FF66] border-[#00FF66]/30 bg-[#00FF66]/10' 
-                        : 'text-zinc-800 border-zinc-800/50 bg-zinc-900/20'
-                    }`}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* --- SECTION 03: EARN AS THEY GROW --- */}
-        <motion.div 
-          variants={cardVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex flex-col justify-between p-6 rounded-2xl min-h-[450px] border-l border-zinc-900 md:pl-8"
-        >
-          <div>
-            <span className="text-[#39FF14] font-mono text-sm tracking-wider block mb-4 opacity-80">// 03</span>
-            <h2 className="text-3xl font-semibold tracking-tight mb-4">Earn as They Grow</h2>
-            <p className="text-zinc-400 font-normal leading-relaxed text-[15px] max-w-md">
-              Data and logic of computations carried out offchain are not visible onchain or to the host machine in the case of enclaves and cryptographic schemes.
-            </p>
-          </div>
-
-          {/* Secure Enclave Grid Graphic */}
-          <div className="relative mt-8 h-48 border border-zinc-800/40 bg-zinc-950/40 rounded-sm flex items-center justify-center overflow-hidden">
-            {/* Scanlines Background Effect */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,_rgba(0,0,0,0.25)_50%),_linear-gradient(90deg,_rgba(255,0,0,0.06),_rgba(0,255,0,0.02),_rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] pointer-events-none opacity-40" />
-
-            {/* Corner Brackets */}
-            <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-zinc-600" />
-            <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-zinc-600" />
-            <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-zinc-600" />
-            <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-zinc-600" />
-
-            {/* Glowing Lock Interface */}
-            <div className="relative flex items-center justify-center w-32 h-32">
-              {/* Outer Pulsing Glow */}
-              <div className="absolute inset-0 bg-[#00FF66]/5 blur-xl rounded-full" />
-              
-              {/* Rotating Dotted Ring */}
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
-                className="absolute inset-0 border-2 border-dashed border-[#00FF66]/40 rounded-full p-1"
-              />
-              
-              {/* Inner Solid Tech Ring */}
-              <motion.div 
-                animate={{ scale: [1, 1.03, 1] }}
-                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                className="absolute w-24 h-24 border border-[#00FF66]/20 rounded-full flex items-center justify-center bg-zinc-900/50 backdrop-blur-sm shadow-[inset_0_0_15px_rgba(0,255,102,0.1)]"
-              >
-                {/* SVG Padlock Icon */}
-                <svg 
-                  className="w-8 h-8 text-[#00FF66] filter drop-shadow-[0_0_8px_rgba(0,255,102,0.6)]" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor" 
-                  strokeWidth={2.2}
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" 
-                  />
-                </svg>
-              </motion.div>
-            </div>
-          </div>
-
-        </motion.div>
-
+    <section className='bg-black text-white py-20 px-6 sm:px-12 md:px-20 font-sans min-h-screen'>
+      {/* Header Section */}
+      <div className='text-center mb-16'>
+        <span className='inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#999999] uppercase mb-3 border border-neutral-800 rounded-full px-3 py-1 bg-neutral-950'>
+          <span className='w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse'></span>
+          Resources
+        </span>
+        <h2 className='text-4xl md:text-5xl font-medium tracking-tight mb-4'>
+          Resources
+        </h2>
+        <p className='text-[#999999] text-sm md:text-base max-w-md mx-auto'>
+          We have countless blog posts to get you started
+        </p>
       </div>
-    </div>
-  );
+
+      {/* Grid Cards Section */}
+      <motion.div
+        className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto'
+        variants={containerVariants}
+        initial='hidden'
+        whileInView='visible'
+        viewport={{ once: true, margin: '-100px' }} // স্ক্রোলে একবারই অ্যানিমেশন হবে
+      >
+        {resourcesData.map((item) => (
+          <motion.article
+            key={item.id}
+            variants={cardVariants}
+            whileHover={{ y: -6, transition: { duration: 0.2 } }} // হোভার করলে সামান্য উপরে উঠবে
+            className='flex flex-col bg-neutral-950/40 border border-neutral-900 rounded-lg p-5 hover:border-neutral-800 transition-colors duration-300 group cursor-pointer'
+          >
+            {/* Image Placeholder / Visual Container */}
+            <div className='w-full aspect-[4/3] bg-neutral-900 border border-neutral-800 rounded-md mb-6 overflow-hidden flex items-center justify-center relative'>
+              <img
+                src={item.image}
+                alt={item.title}
+                className='w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-500 grayscale group-hover:grayscale-0'
+              />
+            </div>
+
+            {/* Date */}
+            <span className='text-xs text-[#999999] font-medium mb-3 block'>
+              {item.date}
+            </span>
+
+            {/* Title */}
+            <h3 className='text-lg font-normal tracking-tight text-white mb-3 leading-snug group-hover:text-neutral-200 transition-colors'>
+              {item.title}
+            </h3>
+
+            {/* Description */}
+            <p className='text-sm text-[#999999] leading-relaxed font-light line-clamp-4 mt-auto'>
+              {item.description}
+            </p>
+          </motion.article>
+        ))}
+      </motion.div>
+    </section>
+  )
 }
