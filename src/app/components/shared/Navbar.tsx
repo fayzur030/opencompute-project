@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Terminal, ArrowRight } from 'lucide-react'
+import { m, AnimatePresence } from 'framer-motion'
+import { Menu, X, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <m.nav
         initial={isMounted ? { y: -100, opacity: 0 } : false}
         animate={isMounted ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.5 }}
@@ -108,12 +108,12 @@ export default function Navbar() {
             {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
-      </motion.nav>
+      </m.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -151,7 +151,7 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

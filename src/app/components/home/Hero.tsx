@@ -21,7 +21,7 @@ const Hero = () => {
 
       {/* ইমেজ সেকশন: ব্যাকগ্রাউন্ডে ফিট থাকবে */}
       <div className='hidden md:flex w-full flex-grow justify-center items-center relative mb-16 overflow-hidden bg-black'>
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-purple-600/10 blur-[130px] rounded-full pointer-events-none' />
+        <div className='absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 bg-purple-600/10 blur-[70px] rounded-full pointer-events-none' />
 
         <div className='absolute inset-0 z-20 pointer-events-none shadow-[inset_0_0_150px_90px_rgba(0,0,0,1)]' />
 
@@ -32,10 +32,11 @@ const Hero = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
-            animate={{ y: [0, -12, 0] }}
+            animate={{ y: [0, -8, 0] }}
             transition={{
-              duration: 5,
+              duration: 6,
               repeat: Infinity,
+              repeatType: 'mirror',
               ease: 'easeInOut',
             }}
           >
@@ -49,7 +50,6 @@ const Hero = () => {
       </div>
 
       <div className='w-full max-w-7xl mx-auto mt-24 md:mt-0 lg:mt-0 md:pt-0 lg:pt-0 flex flex-col md:flex-row md:items-center lg:items-end md:justify-between gap-6 px-4 md:px-8 pb-10 z-30 relative md:absolute md:bottom-10 md:left-1/2 md:-translate-x-1/2 md:translate-y-0 lg:relative lg:-top-10 lg:left-0 lg:translate-x-0 lg:translate-y-0'>
-    
         <div className='lg:absolute lg:bottom-15 z-30 max-w-xl lg:max-w-none text-left'>
           <h1 className='text-4xl md:text-4xl lg:text-5xl tracking-tight mb-4 font-normal'>
             Decentralized <br className='block md:hidden lg:hidden' /> Compute{' '}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/shared/Navbar'
 import { neueMontreal } from '@/fonts'
+import MotionProvider from './components/providers/AnimateProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,8 +19,10 @@ export default function RootLayout({
       <body
         className={`${neueMontreal.variable} bg-black min-h-screen flex flex-col text-foreground`}
       >
-        <Navbar />
-        <main className='pt-20 flex-1'>{children}</main>
+        <MotionProvider>
+          <Navbar />
+          <main className='pt-20 flex-1'>{children}</main>
+        </MotionProvider>
       </body>
     </html>
   )
